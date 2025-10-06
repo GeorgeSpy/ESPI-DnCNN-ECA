@@ -1,0 +1,23 @@
+[
+  {
+    "test_dataset": "W01",
+    "n_train": 2941,
+    "n_test": 502,
+    "accuracy": 0.8366533864541833,
+    "macro_f1": 0.5675505315796109
+  },
+  {
+    "test_dataset": "W02",
+    "n_train": 640,
+    "n_test": 2803,
+    "accuracy": 0.15269354263289334,
+    "macro_f1": 0.08207349440064744
+  },
+  {
+    "test_dataset": "W03",
+    "n_train": 3305,
+    "n_test": 138,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  }
+]

@@ -1,0 +1,100 @@
+{
+  "setup": "Pattern_Only",
+  "n_features": 16,
+  "features_used": [
+    "valid_px",
+    "zero_frac",
+    "chg_h",
+    "chg_v",
+    "chg_d1",
+    "chg_d2",
+    "grad_mean",
+    "grad_std",
+    "lap_mad",
+    "phase_std",
+    "freq_hz.1",
+    "hv_ratio",
+    "diag_ratio",
+    "nodal_complexity",
+    "grad_cv",
+    "lapz"
+  ],
+  "accuracy": 0.9015393552134766,
+  "macro_f1": 0.699138796067328,
+  "weighted_f1": 0.885266614158512,
+  "bootstrap_ci": {
+    "accuracy": {
+      "mean": 0.9016436247458611,
+      "ci": [
+        0.8913738019169329,
+        0.9105431309904153
+      ]
+    },
+    "macro_f1": {
+      "mean": 0.697822235733326,
+      "ci": [
+        0.6671400406676862,
+        0.7266250589043316
+      ]
+    }
+  },
+  "per_class_metrics": {
+    "mode_(1,1)H": {
+      "precision": 0.953125,
+      "recall": 0.3065326633165829,
+      "f1-score": 0.46387832699619774,
+      "support": 199.0
+    },
+    "mode_(1,1)T": {
+      "precision": 0.8732394366197183,
+      "recall": 0.36257309941520466,
+      "f1-score": 0.512396694214876,
+      "support": 171.0
+    },
+    "mode_(1,2)": {
+      "precision": 0.696078431372549,
+      "recall": 0.6698113207547169,
+      "f1-score": 0.6826923076923077,
+      "support": 106.0
+    },
+    "mode_(2,1)": {
+      "precision": 1.0,
+      "recall": 0.4482758620689655,
+      "f1-score": 0.6190476190476191,
+      "support": 58.0
+    },
+    "mode_higher": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1115.0
+    },
+    "other_unknown": {
+      "precision": 0.8566585956416465,
+      "recall": 0.9860646599777034,
+      "f1-score": 0.9168178284529671,
+      "support": 1794.0
+    },
+    "accuracy": 0.9015393552134766,
+    "macro avg": {
+      "precision": 0.8965169106056523,
+      "recall": 0.6288762675888623,
+      "f1-score": 0.699138796067328,
+      "support": 3443.0
+    },
+    "weighted avg": {
+      "precision": 0.9069490714401904,
+      "recall": 0.9015393552134766,
+      "f1-score": 0.885266614158512,
+      "support": 3443.0
+    }
+  },
+  "classes": [
+    "mode_(1,1)H",
+    "mode_(1,1)T",
+    "mode_(1,2)",
+    "mode_(2,1)",
+    "mode_higher",
+    "other_unknown"
+  ]
+}

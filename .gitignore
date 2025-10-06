@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+ESPI_VENV/
+ESPI_VENV2/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Data files (too large for GitHub)
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# Large datasets
+data/
+datasets/
+CLEAN_u16/
+*_PhaseOut_*/
+*_CLEAN_*/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.out
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Results (keep structure but not large files)
+results/*.csv
+results/*.npy
+results/*.png
+!results/*.json
+!results/*.md
+!results/*.txt
+
+# Checkpoints and models (too large)
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.pb
+*.onnx
+
+# PowerShell logs
+*.ps1.log
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Large output directories
+outputs/
+temp/
+tmp/
+cache/

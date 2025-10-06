@@ -1,0 +1,33 @@
+# project_config_W01.yaml  (paths & presets)
+data:
+  averaged_dir: "C:\\Users\\Geiorge HTPC\\Desktop\\Mpouzoukia\\W01_ESPI_90db-Averaged"
+  roi_mask: "C:\\Users\\Geiorge HTPC\\Desktop\\Mpouzoukia\\roi_mask.png"
+
+denoiser:
+  ckpt: "C:\\Users\\Geiorge HTPC\\Desktop\\Mpouzoukia\\outputs_W01\\checkpoints\\best.pth"
+  onnx: "C:\\Users\\Geiorge HTPC\\Desktop\\Mpouzoukia\\outputs_W01\\dncnn_lite_eca.onnx"
+  device: "cpu"
+  tile: 224
+  overlap: 32
+  prefilter: "none"        # none|median3
+  residual_weight: 0.7
+  percentile_norm: 1.0
+
+phase:
+  script: "C:\\ESPI_DnCNN\\phase_extract_fft_STRICT.py"
+  output_dir: "C:\\Users\\Geiorge HTPC\\Desktop\\Mpouzoukia\\W01_PhaseOut_STRICT\\band18_ff100_cs16"
+  band: 18
+  center_suppress: 16
+  flatfield: 80
+  annulus: [8, 300]
+  prefer_right: true
+  unwrap: "auto"
+
+qc:
+  qmin: 0.30
+  align_sign_offset: true
+
+modes:
+  features_csv: "C:\\Users\\Geiorge HTPC\\Desktop\\Mpouzoukia\\W01_modes\\nodal_features.csv"
+  clusters_csv: "C:\\Users\\Geiorge HTPC\\Desktop\\Mpouzoukia\\W01_modes\\modes_clusters.csv"
+  rf_model:     "C:\\Users\\Geiorge HTPC\\Desktop\\Mpouzoukia\\W01_modes\\rf_model\\modes_rf_pipeline.joblib"

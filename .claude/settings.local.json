@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(C:ESPI_VENV2Scriptspip.exe install psutil wmi pywin32)",
+      "Bash(pip install:*)",
+      "Bash(powershell:*)",
+      "Read(//c/ESPI_TEMP/THESIS_PACKAGE/**)",
+      "Bash(dir:*)",
+      "Read(//c/Users/Geiorge HTPC/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

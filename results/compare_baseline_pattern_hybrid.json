@@ -1,0 +1,20 @@
+{
+  "baseline_note": "Use this to compare with your frozen baseline (e.g. 0.553 accuracy).",
+  "pattern_only": {
+    "accuracy": 0.9015393552134766,
+    "macro_f1": 0.699138796067328,
+    "weighted_f1": 0.885266614158512,
+    "n_features": 16
+  },
+  "hybrid": {
+    "accuracy": 0.9785071158873075,
+    "macro_f1": 0.9514859277036717,
+    "weighted_f1": 0.9786511003269666,
+    "n_features": 22
+  },
+  "delta_hybrid_minus_pattern": {
+    "accuracy": 0.07696776067383093,
+    "macro_f1": 0.2523471316363437,
+    "weighted_f1": 0.09338448616845452
+  }
+}

@@ -1,0 +1,1378 @@
+[
+  {
+    "test_bin": 8,
+    "freq_range": "40-45",
+    "n_train": 3386,
+    "n_test": 57,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 9,
+    "freq_range": "45-50",
+    "n_train": 3389,
+    "n_test": 54,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 10,
+    "freq_range": "50-55",
+    "n_train": 3383,
+    "n_test": 60,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 11,
+    "freq_range": "55-60",
+    "n_train": 3389,
+    "n_test": 54,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 12,
+    "freq_range": "60-65",
+    "n_train": 3379,
+    "n_test": 64,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 13,
+    "freq_range": "65-70",
+    "n_train": 3406,
+    "n_test": 37,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 14,
+    "freq_range": "70-75",
+    "n_train": 3400,
+    "n_test": 43,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 15,
+    "freq_range": "75-80",
+    "n_train": 3401,
+    "n_test": 42,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 16,
+    "freq_range": "80-85",
+    "n_train": 3402,
+    "n_test": 41,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 17,
+    "freq_range": "85-90",
+    "n_train": 3403,
+    "n_test": 40,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 18,
+    "freq_range": "90-95",
+    "n_train": 3421,
+    "n_test": 22,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 19,
+    "freq_range": "95-100",
+    "n_train": 3409,
+    "n_test": 34,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 20,
+    "freq_range": "100-105",
+    "n_train": 3409,
+    "n_test": 34,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 21,
+    "freq_range": "105-110",
+    "n_train": 3407,
+    "n_test": 36,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 22,
+    "freq_range": "110-115",
+    "n_train": 3407,
+    "n_test": 36,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 23,
+    "freq_range": "115-120",
+    "n_train": 3411,
+    "n_test": 32,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 24,
+    "freq_range": "120-125",
+    "n_train": 3417,
+    "n_test": 26,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 25,
+    "freq_range": "125-130",
+    "n_train": 3404,
+    "n_test": 39,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 26,
+    "freq_range": "130-135",
+    "n_train": 3413,
+    "n_test": 30,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 27,
+    "freq_range": "135-140",
+    "n_train": 3415,
+    "n_test": 28,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 28,
+    "freq_range": "140-145",
+    "n_train": 3413,
+    "n_test": 30,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 29,
+    "freq_range": "145-150",
+    "n_train": 3413,
+    "n_test": 30,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 30,
+    "freq_range": "150-155",
+    "n_train": 3413,
+    "n_test": 30,
+    "accuracy": 0.0,
+    "macro_f1": 0.0
+  },
+  {
+    "test_bin": 31,
+    "freq_range": "155-160",
+    "n_train": 3403,
+    "n_test": 40,
+    "accuracy": 0.325,
+    "macro_f1": 0.24528301886792453
+  },
+  {
+    "test_bin": 32,
+    "freq_range": "160-165",
+    "n_train": 3408,
+    "n_test": 35,
+    "accuracy": 0.4857142857142857,
+    "macro_f1": 0.3269230769230769
+  },
+  {
+    "test_bin": 33,
+    "freq_range": "165-170",
+    "n_train": 3406,
+    "n_test": 37,
+    "accuracy": 0.6756756756756757,
+    "macro_f1": 0.4032258064516129
+  },
+  {
+    "test_bin": 34,
+    "freq_range": "170-175",
+    "n_train": 3422,
+    "n_test": 21,
+    "accuracy": 0.3333333333333333,
+    "macro_f1": 0.25
+  },
+  {
+    "test_bin": 35,
+    "freq_range": "175-180",
+    "n_train": 3422,
+    "n_test": 21,
+    "accuracy": 0.047619047619047616,
+    "macro_f1": 0.045454545454545456
+  },
+  {
+    "test_bin": 36,
+    "freq_range": "180-185",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 0.06666666666666667,
+    "macro_f1": 0.0625
+  },
+  {
+    "test_bin": 37,
+    "freq_range": "185-190",
+    "n_train": 3422,
+    "n_test": 21,
+    "accuracy": 0.7142857142857143,
+    "macro_f1": 0.4166666666666667
+  },
+  {
+    "test_bin": 38,
+    "freq_range": "190-195",
+    "n_train": 3424,
+    "n_test": 19,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 39,
+    "freq_range": "195-200",
+    "n_train": 3422,
+    "n_test": 21,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 40,
+    "freq_range": "200-205",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 41,
+    "freq_range": "205-210",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 42,
+    "freq_range": "210-215",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 43,
+    "freq_range": "215-220",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 44,
+    "freq_range": "220-225",
+    "n_train": 3417,
+    "n_test": 26,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 45,
+    "freq_range": "225-230",
+    "n_train": 3429,
+    "n_test": 14,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 46,
+    "freq_range": "230-235",
+    "n_train": 3427,
+    "n_test": 16,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 47,
+    "freq_range": "235-240",
+    "n_train": 3427,
+    "n_test": 16,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 53,
+    "freq_range": "265-270",
+    "n_train": 3427,
+    "n_test": 16,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 54,
+    "freq_range": "270-275",
+    "n_train": 3427,
+    "n_test": 16,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 55,
+    "freq_range": "275-280",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 56,
+    "freq_range": "280-285",
+    "n_train": 3429,
+    "n_test": 14,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 57,
+    "freq_range": "285-290",
+    "n_train": 3422,
+    "n_test": 21,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 58,
+    "freq_range": "290-295",
+    "n_train": 3419,
+    "n_test": 24,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 59,
+    "freq_range": "295-300",
+    "n_train": 3431,
+    "n_test": 12,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 60,
+    "freq_range": "300-305",
+    "n_train": 3431,
+    "n_test": 12,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 61,
+    "freq_range": "305-310",
+    "n_train": 3424,
+    "n_test": 19,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 62,
+    "freq_range": "310-315",
+    "n_train": 3427,
+    "n_test": 16,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 63,
+    "freq_range": "315-320",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 0.0,
+    "macro_f1": 0.0
+  },
+  {
+    "test_bin": 64,
+    "freq_range": "320-325",
+    "n_train": 3414,
+    "n_test": 29,
+    "accuracy": 0.1724137931034483,
+    "macro_f1": 0.14705882352941177
+  },
+  {
+    "test_bin": 65,
+    "freq_range": "325-330",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 0.16666666666666666,
+    "macro_f1": 0.14285714285714285
+  },
+  {
+    "test_bin": 66,
+    "freq_range": "330-335",
+    "n_train": 3423,
+    "n_test": 20,
+    "accuracy": 0.7,
+    "macro_f1": 0.4117647058823529
+  },
+  {
+    "test_bin": 67,
+    "freq_range": "335-340",
+    "n_train": 3420,
+    "n_test": 23,
+    "accuracy": 0.21739130434782608,
+    "macro_f1": 0.17857142857142858
+  },
+  {
+    "test_bin": 68,
+    "freq_range": "340-345",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 0.7777777777777778,
+    "macro_f1": 0.4375
+  },
+  {
+    "test_bin": 69,
+    "freq_range": "345-350",
+    "n_train": 3424,
+    "n_test": 19,
+    "accuracy": 0.42105263157894735,
+    "macro_f1": 0.2962962962962963
+  },
+  {
+    "test_bin": 70,
+    "freq_range": "350-355",
+    "n_train": 3417,
+    "n_test": 26,
+    "accuracy": 0.38461538461538464,
+    "macro_f1": 0.2777777777777778
+  },
+  {
+    "test_bin": 71,
+    "freq_range": "355-360",
+    "n_train": 3420,
+    "n_test": 23,
+    "accuracy": 0.5652173913043478,
+    "macro_f1": 0.3611111111111111
+  },
+  {
+    "test_bin": 72,
+    "freq_range": "360-365",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 73,
+    "freq_range": "365-370",
+    "n_train": 3418,
+    "n_test": 25,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 74,
+    "freq_range": "370-375",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 75,
+    "freq_range": "375-380",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 76,
+    "freq_range": "380-385",
+    "n_train": 3417,
+    "n_test": 26,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 77,
+    "freq_range": "385-390",
+    "n_train": 3423,
+    "n_test": 20,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 78,
+    "freq_range": "390-395",
+    "n_train": 3423,
+    "n_test": 20,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 79,
+    "freq_range": "395-400",
+    "n_train": 3424,
+    "n_test": 19,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 80,
+    "freq_range": "400-405",
+    "n_train": 3421,
+    "n_test": 22,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 81,
+    "freq_range": "405-410",
+    "n_train": 3424,
+    "n_test": 19,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 82,
+    "freq_range": "410-415",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 83,
+    "freq_range": "415-420",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 84,
+    "freq_range": "420-425",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 85,
+    "freq_range": "425-430",
+    "n_train": 3423,
+    "n_test": 20,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 86,
+    "freq_range": "430-435",
+    "n_train": 3424,
+    "n_test": 19,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 87,
+    "freq_range": "435-440",
+    "n_train": 3420,
+    "n_test": 23,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 88,
+    "freq_range": "440-445",
+    "n_train": 3422,
+    "n_test": 21,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 89,
+    "freq_range": "445-450",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 90,
+    "freq_range": "450-455",
+    "n_train": 3423,
+    "n_test": 20,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 91,
+    "freq_range": "455-460",
+    "n_train": 3421,
+    "n_test": 22,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 92,
+    "freq_range": "460-465",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 93,
+    "freq_range": "465-470",
+    "n_train": 3422,
+    "n_test": 21,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 94,
+    "freq_range": "470-475",
+    "n_train": 3422,
+    "n_test": 21,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 95,
+    "freq_range": "475-480",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 96,
+    "freq_range": "480-485",
+    "n_train": 3423,
+    "n_test": 20,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 97,
+    "freq_range": "485-490",
+    "n_train": 3419,
+    "n_test": 24,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 98,
+    "freq_range": "490-495",
+    "n_train": 3424,
+    "n_test": 19,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 99,
+    "freq_range": "495-500",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 0.9411764705882353,
+    "macro_f1": 0.48484848484848486
+  },
+  {
+    "test_bin": 100,
+    "freq_range": "500-505",
+    "n_train": 3429,
+    "n_test": 14,
+    "accuracy": 0.7142857142857143,
+    "macro_f1": 0.4166666666666667
+  },
+  {
+    "test_bin": 101,
+    "freq_range": "505-510",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 0.8235294117647058,
+    "macro_f1": 0.45161290322580644
+  },
+  {
+    "test_bin": 102,
+    "freq_range": "510-515",
+    "n_train": 3431,
+    "n_test": 12,
+    "accuracy": 0.9166666666666666,
+    "macro_f1": 0.4782608695652174
+  },
+  {
+    "test_bin": 103,
+    "freq_range": "515-520",
+    "n_train": 3433,
+    "n_test": 10,
+    "accuracy": 0.8,
+    "macro_f1": 0.4444444444444444
+  },
+  {
+    "test_bin": 104,
+    "freq_range": "520-525",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 0.7692307692307693,
+    "macro_f1": 0.43478260869565216
+  },
+  {
+    "test_bin": 105,
+    "freq_range": "525-530",
+    "n_train": 3431,
+    "n_test": 12,
+    "accuracy": 0.9166666666666666,
+    "macro_f1": 0.4782608695652174
+  },
+  {
+    "test_bin": 106,
+    "freq_range": "530-535",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 0.5454545454545454,
+    "macro_f1": 0.35294117647058826
+  },
+  {
+    "test_bin": 107,
+    "freq_range": "535-540",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 0.0,
+    "macro_f1": 0.0
+  },
+  {
+    "test_bin": 108,
+    "freq_range": "540-545",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 0.8666666666666667,
+    "macro_f1": 0.4642857142857143
+  },
+  {
+    "test_bin": 109,
+    "freq_range": "545-550",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 0.7272727272727273,
+    "macro_f1": 0.42105263157894735
+  },
+  {
+    "test_bin": 110,
+    "freq_range": "550-555",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 0.8666666666666667,
+    "macro_f1": 0.4642857142857143
+  },
+  {
+    "test_bin": 143,
+    "freq_range": "715-720",
+    "n_train": 3421,
+    "n_test": 22,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 144,
+    "freq_range": "720-725",
+    "n_train": 3423,
+    "n_test": 20,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 145,
+    "freq_range": "725-730",
+    "n_train": 3423,
+    "n_test": 20,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 146,
+    "freq_range": "730-735",
+    "n_train": 3423,
+    "n_test": 20,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 147,
+    "freq_range": "735-740",
+    "n_train": 3424,
+    "n_test": 19,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 148,
+    "freq_range": "740-745",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 149,
+    "freq_range": "745-750",
+    "n_train": 3427,
+    "n_test": 16,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 150,
+    "freq_range": "750-755",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 151,
+    "freq_range": "755-760",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 152,
+    "freq_range": "760-765",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 153,
+    "freq_range": "765-770",
+    "n_train": 3424,
+    "n_test": 19,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 154,
+    "freq_range": "770-775",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 155,
+    "freq_range": "775-780",
+    "n_train": 3415,
+    "n_test": 28,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 156,
+    "freq_range": "780-785",
+    "n_train": 3405,
+    "n_test": 38,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 157,
+    "freq_range": "785-790",
+    "n_train": 3429,
+    "n_test": 14,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 158,
+    "freq_range": "790-795",
+    "n_train": 3429,
+    "n_test": 14,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 159,
+    "freq_range": "795-800",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 160,
+    "freq_range": "800-805",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 161,
+    "freq_range": "805-810",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 162,
+    "freq_range": "810-815",
+    "n_train": 3434,
+    "n_test": 9,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 163,
+    "freq_range": "815-820",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 164,
+    "freq_range": "820-825",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 165,
+    "freq_range": "825-830",
+    "n_train": 3413,
+    "n_test": 30,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 166,
+    "freq_range": "830-835",
+    "n_train": 3422,
+    "n_test": 21,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 167,
+    "freq_range": "835-840",
+    "n_train": 3427,
+    "n_test": 16,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 168,
+    "freq_range": "840-845",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 169,
+    "freq_range": "845-850",
+    "n_train": 3419,
+    "n_test": 24,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 170,
+    "freq_range": "850-855",
+    "n_train": 3435,
+    "n_test": 8,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 171,
+    "freq_range": "855-860",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 172,
+    "freq_range": "860-865",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 173,
+    "freq_range": "865-870",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 174,
+    "freq_range": "870-875",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 175,
+    "freq_range": "875-880",
+    "n_train": 3429,
+    "n_test": 14,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 176,
+    "freq_range": "880-885",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 177,
+    "freq_range": "885-890",
+    "n_train": 3427,
+    "n_test": 16,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 178,
+    "freq_range": "890-895",
+    "n_train": 3429,
+    "n_test": 14,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 179,
+    "freq_range": "895-900",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 180,
+    "freq_range": "900-905",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 181,
+    "freq_range": "905-910",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 182,
+    "freq_range": "910-915",
+    "n_train": 3426,
+    "n_test": 17,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 183,
+    "freq_range": "915-920",
+    "n_train": 3435,
+    "n_test": 8,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 184,
+    "freq_range": "920-925",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 186,
+    "freq_range": "930-935",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 187,
+    "freq_range": "935-940",
+    "n_train": 3427,
+    "n_test": 16,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 188,
+    "freq_range": "940-945",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 189,
+    "freq_range": "945-950",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 190,
+    "freq_range": "950-955",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 191,
+    "freq_range": "955-960",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 192,
+    "freq_range": "960-965",
+    "n_train": 3425,
+    "n_test": 18,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 193,
+    "freq_range": "965-970",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 195,
+    "freq_range": "975-980",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 196,
+    "freq_range": "980-985",
+    "n_train": 3429,
+    "n_test": 14,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 198,
+    "freq_range": "990-995",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 199,
+    "freq_range": "995-1000",
+    "n_train": 3429,
+    "n_test": 14,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 200,
+    "freq_range": "1000-1005",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 202,
+    "freq_range": "1010-1015",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 204,
+    "freq_range": "1020-1025",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 206,
+    "freq_range": "1030-1035",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 208,
+    "freq_range": "1040-1045",
+    "n_train": 3433,
+    "n_test": 10,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 210,
+    "freq_range": "1050-1055",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 212,
+    "freq_range": "1060-1065",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 214,
+    "freq_range": "1070-1075",
+    "n_train": 3435,
+    "n_test": 8,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 216,
+    "freq_range": "1080-1085",
+    "n_train": 3433,
+    "n_test": 10,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 218,
+    "freq_range": "1090-1095",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 220,
+    "freq_range": "1100-1105",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 222,
+    "freq_range": "1110-1115",
+    "n_train": 3433,
+    "n_test": 10,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 224,
+    "freq_range": "1120-1125",
+    "n_train": 3430,
+    "n_test": 13,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 226,
+    "freq_range": "1130-1135",
+    "n_train": 3428,
+    "n_test": 15,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 228,
+    "freq_range": "1140-1145",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 230,
+    "freq_range": "1150-1155",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 232,
+    "freq_range": "1160-1165",
+    "n_train": 3434,
+    "n_test": 9,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 234,
+    "freq_range": "1170-1175",
+    "n_train": 3434,
+    "n_test": 9,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 236,
+    "freq_range": "1180-1185",
+    "n_train": 3432,
+    "n_test": 11,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  {
+    "test_bin": 238,
+    "freq_range": "1190-1195",
+    "n_train": 3436,
+    "n_test": 7,
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "stability_analysis": {
+    "avg_correlation": 0.07542835395775828,
+    "top_10_features": {
+      "freq_hz.1": 0.5546594699889533,
+      "diag_ratio": 0.047056990173897376,
+      "valid_px": 0.03631638056460691,
+      "lap_mad": 0.03189110156198138,
+      "lapz": 0.03158611895080524,
+      "grad_cv": 0.031330904488200376,
+      "chg_v": 0.029799534153255473,
+      "hv_ratio": 0.029271273765411342,
+      "chg_d1": 0.028180637599122427,
+      "grad_mean": 0.02780331098740149
+    },
+    "consistently_stable": [
+      "valid_px",
+      "chg_v",
+      "chg_d1",
+      "grad_mean",
+      "lap_mad",
+      "freq_hz.1",
+      "hv_ratio",
+      "diag_ratio",
+      "grad_cv",
+      "lapz"
+    ],
+    "stability_count": {
+      "valid_px": 5,
+      "zero_frac": 0,
+      "chg_h": 0,
+      "chg_v": 5,
+      "chg_d1": 5,
+      "chg_d2": 0,
+      "grad_mean": 4,
+      "grad_std": 0,
+      "lap_mad": 5,
+      "phase_std": 1,
+      "freq_hz.1": 5,
+      "hv_ratio": 5,
+      "diag_ratio": 5,
+      "nodal_complexity": 0,
+      "grad_cv": 5,
+      "lapz": 5
+    }
+  }
+}

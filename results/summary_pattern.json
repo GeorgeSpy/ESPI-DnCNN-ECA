@@ -1,0 +1,23 @@
+{
+  "setup": "pattern",
+  "n": 3443,
+  "features": [
+    "valid_px",
+    "zero_frac",
+    "chg_h",
+    "chg_v",
+    "chg_d1",
+    "chg_d2",
+    "grad_mean",
+    "grad_std",
+    "lap_mad",
+    "phase_std",
+    "freq_hz.1",
+    "hv_ratio",
+    "diag_ratio",
+    "nodal_complexity",
+    "grad_cv",
+    "lapz"
+  ],
+  "accuracy": 0.9015393552134766
+}
