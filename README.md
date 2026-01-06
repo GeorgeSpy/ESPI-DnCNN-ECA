@@ -26,7 +26,7 @@ pip install -r requirements.txt
 Training requires a folder of clean reference images. The script automatically generates pseudo-noisy pairs on the fly.
 
 ```bash
-python espi_dncnn.py \
+python espi_dncnn_lite_eca.py \
     --clean-root /path/to/clean_images \
     --output-dir ./training_output \
     --epochs 50 \
@@ -40,7 +40,7 @@ python espi_dncnn.py \
 To evaluate on real experimental data (Single-shot vs Averaged pairs):
 
 ```bash
-python espi_dncnn.py \
+python espi_dncnn_lite_eca.py \
     --clean-root /path/to/averaged_references \
     --real-noisy-root /path/to/single_shot_noisy \
     --resume ./checkpoints/best.pth \
@@ -53,7 +53,7 @@ python espi_dncnn.py \
 Export the trained model for portable inference:
 
 ```bash
-python espi_dncnn.py ... --export-onnx model.onnx
+python espi_dncnn_lite_eca.py ... --export-onnx model.onnx
 ```
 
 ## 📊 Performance (v3 Findings)
