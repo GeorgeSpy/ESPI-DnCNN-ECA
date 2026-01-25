@@ -65,6 +65,4 @@ Recent A/B testing revealed:
 
 ## 📄 License
 
-## 📄 License
-
 MIT License - see [LICENSE](LICENSE) for details.
