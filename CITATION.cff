@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "ESPI-DnCNN-ECA: Lightweight Denoising for ESPI Interferometry"
+version: 1.0.0
+date-released: 2026-01-01
+authors:
+  - family-names: "Spyropoulos"
+    given-names: "Georgios"
+    orcid: "https://orcid.org/0009-0004-0866-0107"
+    affiliation: "Hellenic Mediterranean University, Department of Music Technology and Acoustics"
+abstract: >-
+  A specialized PyTorch implementation of DnCNN-Lite enhanced with 
+  Efficient Channel Attention (ECA) for denoising Electronic Speckle 
+  Pattern Interferometry (ESPI) images. Part of MSc Thesis research 
+  on automatic modal classification of musical instrument soundboards.
+keywords:
+  - ESPI
+  - denoising
+  - deep learning
+  - DnCNN
+  - attention mechanism
+  - speckle noise
+  - interferometry
+  - PyTorch
+license: MIT
+repository-code: "https://github.com/GeorgeSpy/ESPI-DnCNN-ECA"

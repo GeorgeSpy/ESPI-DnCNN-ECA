@@ -1,0 +1,80 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Data files
+*.csv
+*.pkl
+*.npy
+*.npz
+
+# Model checkpoints & weights
+*.pth
+*.pt
+*.onnx
+checkpoints/
+weights/
+models/
+
+# Training outputs
+training_output/
+outputs/
+logs/
+runs/
+tensorboard/
+
+# Images (keep small samples if needed)
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.bmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
