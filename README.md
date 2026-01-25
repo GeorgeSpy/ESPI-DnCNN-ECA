@@ -65,4 +65,6 @@ Recent A/B testing revealed:
 
 ## 📄 License
 
-Academic/Research License. Please cite appropriately if used.
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) for details.
