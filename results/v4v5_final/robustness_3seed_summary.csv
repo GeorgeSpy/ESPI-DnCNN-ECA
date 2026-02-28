@@ -1,0 +1,4 @@
+model,noise_sigma,selection_criterion,n_seeds,accuracy_bestf1_mean,accuracy_bestf1_std,macro_f1_bestf1_mean,macro_f1_bestf1_std,notes
+Raw,25,Best Macro-F1,3,94.22,0.86,84.35,0.84,Added-noise baseline
+V4R,25,Best Macro-F1,3,95.76,0.49,87.65,1.50,Light ECA design (best overall robustness)
+V5R,25,Best Macro-F1,3,94.37,0.71,84.91,1.87,Aggressive attention; higher variability

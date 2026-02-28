@@ -1,0 +1,61 @@
+run_id: V4R_ECA_seed42
+seed: 42
+
+project:
+  name: ESPI-DnCNN-ECA
+  phase: thesis_final_v4v5
+  canonical: true
+
+model:
+  family: DnCNN-lite
+  variant: V4R_ECA
+  eca_enabled: true
+  eca_design: light
+  eca_layers: [0, 1, 2]
+  depth: 17
+  features: 32
+  normalization:
+    type: group
+    spec: "GroupNorm(8,32)"   # 8 groups x 4 channels for C=32
+  residual_learning: true
+
+training:
+  supervision_regime: real-aligned
+  target_type: averaged_proxy
+  selection_criterion: "Best Macro-F1"
+  freeze_norm_epoch: 0
+  notes: "Final thesis canonical run"
+
+data:
+  task: "5-class downstream classification support"
+  split_id: "FINAL_SPLIT_vX"
+  input_type: "single-shot ESPI"
+  target_type: "averaged proxy (real-aligned)"
+  pair_count: null   # fill if known exactly for this run
+  preprocessing_id: "PREPROC_vX"
+
+evaluation:
+  downstream_classifier: "ResNet-18"
+  metrics:
+    - accuracy
+    - macro_f1
+  robustness:
+    enabled: true
+    added_noise_sigma: 25
+    seeds_evaluated: [42, 13, 37]
+
+artifacts:
+  checkpoint_path: "path/or/external/link/to/checkpoint.pth"
+  checkpoint_sha256: "FILL_ME"
+  evaluator_script: "scripts/evaluate_xxx.py"
+  evaluator_version: "git:<commit_hash_or_tag>"
+  results_files:
+    - "results/v4v5_final/downstream_summary.csv"
+    - "results/v4v5_final/robustness_3seed_summary.csv"
+
+provenance:
+  thesis_mapping:
+    chapter: "4.3"
+    appendix: "Θ"
+  status: "final"
+  comments: ""

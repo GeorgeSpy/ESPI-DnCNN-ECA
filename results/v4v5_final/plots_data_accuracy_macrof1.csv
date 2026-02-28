@@ -1,0 +1,9 @@
+pipeline_label_full,pipeline_label_short,accuracy_pct,macro_f1_pct,group_order,regime_group
+Raw,Raw,97.70,93.99,1,baseline
+V4 NoECA (pseudo),V4 NoECA (p),96.39,89.06,2,pseudo
+V4 ECA (pseudo),V4 ECA (p),94.77,84.21,3,pseudo
+Averaged Swap,Avg Swap,96.12,91.54,4,baseline
+V4R ECA (light, 3 ECA layers),V4R ECA,98.87,96.64,5,real-aligned
+V4R NoECA,V4R NoECA,98.76,96.07,6,real-aligned
+V5R NoECA,V5R NoECA,98.87,96.01,7,real-aligned
+V5R ECA (aggressive, 7 ECA layers),V5R ECA,98.16,94.27,8,real-aligned
