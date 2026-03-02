@@ -56,12 +56,19 @@ Export the trained model for portable inference:
 python espi_dncnn_lite_eca.py ... --export-onnx model.onnx
 ```
 
-## 📊 Performance (v3 Findings)
+## 📊 Thesis Final Results (V4/V5 Canonical Package)
 
-Recent A/B testing revealed:
-*   **Denoising Benefit**: Significant improvement from Noisy → Denoised (e.g., Random Forest classification accuracy increased from 13% to 62%).
-*   **Architecture**: The `Lite` version performs identically to heavier counterparts for this specific task, validating the efficiency focus.
-*   **Attention**: While ECA is implemented, ablation studies showed practically identical performance to vanilla DnCNN for this specific physics-driven data, suggesting the core CNN capabilities are the primary driver of quality.
+The final conclusions of the thesis are based on the **V4 / V5 canonical package**. Essential findings from the ablation and downstream analysis include:
+
+*   **Training Data Dominance**: The source of supervision matters more than the architecture variant. Denoisers trained on pseudo-noisy (synthetic) data *degrade* downstream classification (Accuracy −1.3% to −2.9%). Denoisers trained on real-aligned pairs *improve* it (+1.1%).
+*   **Optimal Architecture (V4R ECA)**: The lightweight V4 ECA (3 attention layers), when trained on real data, achieves the highest downstream performance (**98.87% Accuracy**, **96.64% Macro-F1**).
+*   **Robustness vs Complexity**: The aggressive V5 design (7 attention layers with dual-pooling) incurs a significant latency overhead (~+360%) and higher variability without corresponding performance gains. The V4 design remains the optimal trade-off.
+
+For curated canonical data, reporting tables, and plotting scripts, please see:
+*   [**`results/v4v5_final/`**](results/v4v5_final/) - Consolidated `CSV` tables for downstream metrics, robustness, and latency.
+*   [**`scripts/`**](scripts/) - Minimal plotting utilities to reproduce thesis figures from the CSV tables.
+
+*(Legacy exploratory findings (v3) are preserved elsewhere for historical traceability but do not represent the final thesis pipeline).*
 
 ## 📄 License
 
