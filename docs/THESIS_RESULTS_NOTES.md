@@ -27,3 +27,4 @@ Appendix Θ contains the extended analysis narrative (V4/V5 regime-dependent beh
 
 ## Legacy v3 note
 v3 pilot/legacy results are preserved for historical context and traceability, but the final thesis conclusions rely on the curated V4/V5 package.
+ 
