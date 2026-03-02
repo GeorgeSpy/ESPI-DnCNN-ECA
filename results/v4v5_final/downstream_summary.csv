@@ -1,0 +1,9 @@
+pipeline,regime_denoiser,accuracy_pct,macro_f1_pct,notes
+Raw,-,97.70,93.99,No denoising baseline
+V4 NoECA,pseudo,96.39,89.06,Pseudo supervision
+V4 ECA,pseudo,94.77,84.21,Pseudo supervision (light ECA)
+Averaged Swap,-,96.12,91.54,Averaged proxy inputs instead of single-shot
+V4R ECA,real-aligned,98.87,96.64,Light attention (3 ECA layers)
+V4R NoECA,real-aligned,98.76,96.07,Real-aligned no-ECA variant
+V5R NoECA,real-aligned,98.87,96.01,Real-aligned aggressive family without ECA
+V5R ECA,real-aligned,98.16,94.27,Aggressive attention (7 ECA layers)

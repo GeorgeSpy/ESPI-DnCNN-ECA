@@ -1,0 +1,7 @@
+model_label,metric,mean,std,n_seeds,noise_sigma,selection_criterion,plot_order
+Raw,Macro-F1@BestF1,84.35,0.84,3,25,Best Macro-F1,1
+V4R,Macro-F1@BestF1,87.65,1.50,3,25,Best Macro-F1,2
+V5R,Macro-F1@BestF1,84.91,1.87,3,25,Best Macro-F1,3
+Raw,Accuracy@BestF1,94.22,0.86,3,25,Best Macro-F1,1
+V4R,Accuracy@BestF1,95.76,0.49,3,25,Best Macro-F1,2
+V5R,Accuracy@BestF1,94.37,0.71,3,25,Best Macro-F1,3

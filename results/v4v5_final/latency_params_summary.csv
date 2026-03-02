@@ -1,0 +1,4 @@
+model,params,latency_ms,batch_size,input_resolution,device,notes
+Base,139776,6.621,1,256x256,RTX3060,Reference no-ECA cost
+V4 ECA,139791,6.912,1,256x256,RTX3060,Light attention overhead ~+4.39%
+V5 ECA,139860,30.482,1,256x256,RTX3060,Aggressive attention overhead ~+360.38%
