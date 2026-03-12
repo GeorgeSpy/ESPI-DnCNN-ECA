@@ -23,6 +23,10 @@ This note maps repository result files to thesis tables and figures.
   - Used for the cost and latency summary table
   - Optional latency plot source
 
+## Interpretation note for thesis alignment
+
+The V4/V5 findings belong to the **mature 5-class downstream phase** of the thesis and should not be interpreted as a direct numerical continuation of the earlier Chapter 4 ablation stage. They reflect the later curated evaluation package used for the final thesis interpretation.
+
 ## Appendix Theta
 
 Appendix Theta contains the extended V4/V5 analysis narrative, including regime-dependent behavior, robustness interpretation, cost-performance trade-offs, and diagnostic context.

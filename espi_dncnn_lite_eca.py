@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ESPI Denoising — DnCNN-Lite + ECA (+ optional Spatial Lite Attention)
-CPU-safe single-file trainer/inferencer with:
-- Resume (--resume auto|path)
-- Tile-based full-res validation/inference (Hann blending)
-- REAL evaluation (single-shot noisy vs averaged pseudo-clean)
-- TensorBoard logging (--tensorboard)
-- ONNX export (--export-onnx)
-Tested on CPU (Ryzen 5600G/5700G) and CUDA if available.
+Baseline ESPI denoising reference implementation based on DnCNN-Lite + ECA
+(with optional Spatial Lite Attention).
 
-CORRECTED VERSION v3:
-- Fixed misleading "+149% SSIM" claims
-- Proper baseline comparisons (Vanilla vs ECA, not Noisy vs ECA)
-- Accurate performance reporting
-- Fair A/B testing methodology
+This script is kept in the public repository as a lightweight baseline and
+historical reference implementation for the earlier V3 stage of the project.
+It is useful for traceability and baseline comparisons, but it should not be
+interpreted as the sole final thesis model. The final thesis interpretation is
+instead tied to the curated V4/V5 package and, in particular, to the later
+real-aligned evaluation regime.
+
+Features exposed by this baseline script include:
+- Resume support (`--resume auto|path`)
+- Tile-based full-resolution validation/inference (Hann blending)
+- REAL evaluation (single-shot noisy vs averaged pseudo-clean)
+- TensorBoard logging (`--tensorboard`)
+- ONNX export (`--export-onnx`)
+
+Tested on CPU (Ryzen 5600G/5700G) and CUDA if available.
 """
 from __future__ import annotations
 

@@ -4,6 +4,8 @@ This repository contains the public denoising code used in the thesis work on El
 
 The repository focuses on the **denoising stage** of the broader workflow. It includes the main DnCNN-Lite variants with Efficient Channel Attention (ECA), lightweight plotting utilities for the final thesis figures, and canonical CSV result tables for downstream comparison, robustness, and latency analysis.
 
+It should be read as **the public denoising component of the thesis, with V3 retained for historical baseline context and V4/V5 retained as the final curated thesis evidence**.
+
 ## Repository scope within the thesis
 
 The full thesis spans three code components:
@@ -16,7 +18,7 @@ In practical terms, this repository corresponds to the denoising component plus 
 
 ## What this repository contains
 
-- Baseline denoising script: `espi_dncnn_lite_eca.py`
+- Historical baseline script: `espi_dncnn_lite_eca.py`
 - Fair-ablation and robustness-oriented v4 script: `espi_dncnn_lite_eca_FULL_PATCH_v4.py`
 - Extended research-oriented v5 script: `espi_dncnn_lite_eca_FULL_PATCH_v5.py`
 - Canonical thesis result tables in `results/v4v5_final/`
@@ -41,10 +43,10 @@ The **final thesis conclusions** are tied to the curated package in `results/v4v
 Key conclusions supported by that package include:
 
 - The **supervision regime** matters more than architecture complexity alone.
-- Models trained on **pseudo-noisy synthetic supervision** can hurt downstream classification.
-- Models trained on **real-aligned pairs** improve downstream classification performance.
-- The lightweight **V4R ECA** configuration gives the best overall balance of downstream performance, robustness, and cost.
-- The more aggressive **V5** design increases latency substantially without delivering consistently better overall behavior.
+- Models trained on **pseudo-noisy synthetic supervision** can hurt downstream classification, even when denoising metrics appear favorable.
+- Models trained on **real-aligned pairs** improve downstream classification performance and support the final system-level thesis conclusion.
+- The lightweight **V4R ECA** configuration is the best practical balance of downstream performance, robustness, and computational cost in the final thesis package.
+- The more aggressive **V5** design is preserved as a higher-cost exploratory extension rather than the definitive best model.
 
 ## Repository layout
 
@@ -104,7 +106,7 @@ The repository preserves version-comparison and changelog documents for traceabi
 - `V4_CHANGELOG_AND_EXPECTED_IMPACT.md`
 - `V5_CHANGELOG.md`
 
-These notes are useful for understanding architecture evolution, but the **canonical final thesis evidence** is the curated package in `results/v4v5_final/`.
+These notes are useful for understanding architecture evolution. In particular, **V3 is retained as historical baseline context**, while the **canonical final thesis evidence** is the curated V4/V5 package in `results/v4v5_final/`.
 
 ## Related repositories
 

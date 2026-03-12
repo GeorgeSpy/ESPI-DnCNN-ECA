@@ -10,6 +10,8 @@ The public codebase includes:
 2. **V4 fair-ablation / stable thesis script**
 3. **V5 extended research script**
 
+The repository also preserves historical baseline material associated with the V3 stage for traceability, but the final thesis interpretation is tied to the curated V4/V5 package rather than to the earlier baseline stage alone.
+
 ## Task
 
 The task is denoising of ESPI measurements or aligned ESPI-derived image pairs, with evaluation in both direct image-quality metrics and downstream classification impact.
@@ -21,7 +23,7 @@ The curated final thesis package supports the following high-level conclusions:
 - Real-aligned denoiser supervision is more important than adding architectural complexity alone.
 - Synthetic pseudo-noisy supervision can improve denoising metrics while still degrading downstream classification.
 - The best overall downstream results were obtained by the **V4R ECA** configuration trained on real-aligned pairs.
-- The more aggressive **V5** design increases cost substantially without becoming the preferred overall thesis choice.
+- The more aggressive **V5** design increases cost substantially and is treated as an exploratory extension rather than the preferred overall thesis choice.
 
 Representative thesis-level downstream results from the canonical package:
 

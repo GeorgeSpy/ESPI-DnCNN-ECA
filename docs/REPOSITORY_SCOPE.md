@@ -2,9 +2,15 @@
 
 This note clarifies how the public repositories map to the thesis workflow.
 
+The thesis codebase is organized into three code components:
+
+1. **Pseudo-noisy data generation**
+2. **Denoising**, which is the scope of this repository
+3. **Classification and evaluation**
+
 ## What this repository contains
 
-`ESPI-DnCNN-ECA` is the **denoising repository**. It contains:
+`ESPI-DnCNN-ECA` is the **denoising repository**. It is one of the three thesis code components and contains:
 
 - public DnCNN-Lite denoising scripts,
 - ECA ablation variants,
