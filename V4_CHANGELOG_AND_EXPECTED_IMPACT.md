@@ -1,9 +1,9 @@
-﻿# DnCNN Lite ECA v4 - Changelog And Expected Impact
+# DnCNN Lite ECA v4 - Changelog And Expected Impact
 
 ## Scope
 
 This changelog outlines the changes made from `v3` to `v4` in:
-- `C:\ESPI_DnCNN\espi_dncnn_lite_eca_FULL_PATCH_v4.py`
+- `espi_dncnn_lite_eca_FULL_PATCH_v4.py`
 
 and explains why these changes are expected to improve the model's behavior.
 
@@ -176,9 +176,9 @@ and explains why these changes are expected to improve the model's behavior.
 Version 4 is primarily a reliability and fairness upgrade, not a "magical" architectural leap.
 
 Realistically, the difference (ECA vs noECA) after proper tuning is expected to be:
-- `ΔPSNR`: approximately `-0.10` to `+0.30` dB
-- `ΔSSIM`: approximately `-0.01` to `+0.03`
-- `ΔEdgeF1`: approximately `+0.005` to `+0.03`
+- `dPSNR`: approximately `-0.10` to `+0.30` dB
+- `dSSIM`: approximately `-0.01` to `+0.03`
+- `dEdgeF1`: approximately `+0.005` to `+0.03`
 
 The greatest advantage of v4:
 - The results obtained will be significantly more reliable and reproducible.

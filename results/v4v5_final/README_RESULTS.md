@@ -1,28 +1,31 @@
 # V4/V5 Final Thesis Results (Canonical Package)
 
-This directory contains the **canonical final result tables** used in the thesis (Chapter 4 and Appendix Θ).
+This directory contains the **canonical final result tables** used in the thesis, primarily for Chapter 4 and Appendix Theta.
 
 ## Files
+
 - `downstream_summary.csv`  
-  Consolidated downstream 5-class classification results (ResNet-18) for Raw / pseudo / real-aligned pipelines.
+  Consolidated downstream 5-class classification results (ResNet-18) for Raw, pseudo-noisy, and real-aligned pipelines.
 
 - `robustness_3seed_summary.csv`  
-  Added-noise robustness evaluation (sigma=25) with 3 seeds, reported as mean±std, using Best Macro-F1 epoch selection.
+  Added-noise robustness evaluation at `sigma = 25` with 3 seeds, reported as mean +/- std using best-Macro-F1 epoch selection.
 
 - `latency_params_summary.csv`  
-  Parameter count and inference latency measurements for Base / V4 ECA / V5 ECA.
+  Parameter-count and inference-latency summary for Base, V4 ECA, and V5 ECA.
 
 - `plots_data_accuracy_macrof1.csv`  
-  Plot-ready table for thesis downstream figures (Accuracy and Macro-F1).
+  Plot-ready table for downstream Accuracy and Macro-F1 figures.
 
 - `plots_data_robustness.csv`  
-  Plot-ready table for robustness figure (Macro-F1@BestF1 and Accuracy@BestF1, mean±std).
+  Plot-ready table for the robustness figure, including Macro-F1@BestF1 and Accuracy@BestF1 summaries.
 
-## Thesis Mapping
-- Chapter 4.3 (DnCNN / ECA / downstream impact)
-- Appendix Θ (extended V4/V5 analysis, diagnostics, robustness, cost)
+## Thesis mapping
 
-## Canonical Note
+- Chapter 4.3: DnCNN / ECA / downstream impact
+- Appendix Theta: extended V4/V5 analysis, diagnostics, robustness, and cost
+
+## Canonical note
+
 Only the files in this directory should be treated as the **final curated thesis evidence**.
-Exploratory / legacy outputs from older evaluator tracks are preserved elsewhere for historical traceability.
- 
+
+Exploratory or legacy outputs from older evaluator tracks may exist elsewhere for historical traceability, but they should not override the package documented here.

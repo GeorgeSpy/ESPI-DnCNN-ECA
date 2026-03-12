@@ -56,6 +56,6 @@ artifacts:
 provenance:
   thesis_mapping:
     chapter: "4.3"
-    appendix: "Θ"
+    appendix: "Theta"
   status: "final"
   comments: ""

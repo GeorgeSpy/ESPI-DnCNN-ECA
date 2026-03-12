@@ -1,104 +1,119 @@
 # ESPI-DnCNN-ECA: Lightweight Denoising for ESPI Interferometry
 
-A specialized PyTorch implementation of **DnCNN-Lite** enhanced with **ECA (Efficient Channel Attention)**, designed specifically for denoising Electronic Speckle Pattern Interferometry (ESPI) images.
+This repository contains the public denoising code used in the thesis work on Electronic Speckle Pattern Interferometry (ESPI), together with the curated V4/V5 result package used for the final thesis interpretation.
 
-This repository contains both:
-- the core denoising code and utilities, and
-- a **curated V4/V5 thesis result package** (canonical CSV tables + plotting scripts) used for the final thesis conclusions.
+The repository focuses on the **denoising stage** of the broader workflow. It includes the main DnCNN-Lite variants with Efficient Channel Attention (ECA), lightweight plotting utilities for the final thesis figures, and canonical CSV result tables for downstream comparison, robustness, and latency analysis.
 
-## 🌟 Key Features
+## Repository scope within the thesis
 
-* **Lightweight Architecture**: Optimized `DnCNNLite` model suitable for CPU training and inference.
-* **Physics-Aware Evaluation**: Supports "REAL" evaluation mode, comparing single-shot noisy inputs against averaged clean references with proper metric calculation (PSNR, SSIM, EdgeF1).
-* **ECA Attention**: Integrated Efficient Channel Attention blocks for feature refinement.
-* **Tile-Based Inference**: Full-resolution processing using tile-based denoising with Hann window blending to avoid artifacts.
-* **Robust Metrics**: Includes custom implementations for PSNR, SSIM, and Fringe Edge F1 score.
-* **Hardware Agnostic**: Automatic switching between CUDA and CPU; supports mixed-precision (AMP).
+The full thesis spans three code components:
 
-## 🛠 Installation
+1. **Pseudo-noisy data generation** for supervision and controlled ablations.
+2. **DnCNN-ECA denoising**, which is the scope of this repository.
+3. **Classification and evaluation**, maintained in a separate repository.
+
+In practical terms, this repository corresponds to the denoising component plus the final V4/V5 thesis result package.
+
+## What this repository contains
+
+- Baseline denoising script: `espi_dncnn_lite_eca.py`
+- Fair-ablation and robustness-oriented v4 script: `espi_dncnn_lite_eca_FULL_PATCH_v4.py`
+- Extended research-oriented v5 script: `espi_dncnn_lite_eca_FULL_PATCH_v5.py`
+- Canonical thesis result tables in `results/v4v5_final/`
+- Plotting scripts in `scripts/`
+- Supporting notes, changelogs, and thesis mapping documents
+
+## Canonical public entry points
+
+| Purpose | File |
+|---|---|
+| Lightweight baseline / core DnCNN-Lite ECA script | `espi_dncnn_lite_eca.py` |
+| Stable v4 comparison script with fair ECA vs no-ECA controls | `espi_dncnn_lite_eca_FULL_PATCH_v4.py` |
+| Extended v5 research script with dual pooling and advanced ECA options | `espi_dncnn_lite_eca_FULL_PATCH_v5.py` |
+| Downstream result figure generation | `scripts/plot_downstream_v4v5.py` |
+| Robustness figure generation | `scripts/plot_robustness.py` |
+| Latency figure generation | `scripts/plot_latency.py` |
+
+## Final thesis package
+
+The **final thesis conclusions** are tied to the curated package in `results/v4v5_final/`.
+
+Key conclusions supported by that package include:
+
+- The **supervision regime** matters more than architecture complexity alone.
+- Models trained on **pseudo-noisy synthetic supervision** can hurt downstream classification.
+- Models trained on **real-aligned pairs** improve downstream classification performance.
+- The lightweight **V4R ECA** configuration gives the best overall balance of downstream performance, robustness, and cost.
+- The more aggressive **V5** design increases latency substantially without delivering consistently better overall behavior.
+
+## Repository layout
+
+```text
+.
+|-- README.md
+|-- REPRODUCE.md
+|-- MODEL_CARD.md
+|-- DNCNN_VERSIONS_COMPARISON_REPORT.md
+|-- V4_CHANGELOG_AND_EXPECTED_IMPACT.md
+|-- V5_CHANGELOG.md
+|-- CITATION.cff
+|-- requirements.txt
+|-- docs/
+|   |-- REPOSITORY_SCOPE.md
+|   `-- THESIS_RESULTS_NOTES.md
+|-- experiments/
+|   `-- manifests/
+|       `-- TEMPLATE_run_manifest.yaml
+|-- results/
+|   `-- v4v5_final/
+|       |-- README_RESULTS.md
+|       |-- downstream_summary.csv
+|       |-- robustness_3seed_summary.csv
+|       |-- latency_params_summary.csv
+|       |-- plots_data_accuracy_macrof1.csv
+|       `-- plots_data_robustness.csv
+`-- scripts/
+    |-- plot_downstream_v4v5.py
+    |-- plot_robustness.py
+    `-- plot_latency.py
+```
+
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-*(Requires Python 3.8+ and PyTorch)*
+Requirements are intentionally minimal and centered on the PyTorch training and plotting stack.
 
-## 🚀 Usage
+## Reproducibility and usage
 
-### Training on Synthetic Data
+See `REPRODUCE.md` for command-line examples aligned with the public scripts.
 
-Training requires a folder of clean reference images. The script automatically generates pseudo-noisy pairs on the fly.
+For thesis-file mapping, see:
 
-```bash
-python espi_dncnn_lite_eca.py \
-    --clean-root /path/to/clean_images \
-    --output-dir ./training_output \
-    --epochs 50 \
-    --batch-size 4 \
-    --sigma-g 0.05 \
-    --speckle 0.02
-```
+- `docs/REPOSITORY_SCOPE.md`
+- `docs/THESIS_RESULTS_NOTES.md`
+- `results/v4v5_final/README_RESULTS.md`
 
-### Real Data Evaluation
+## Historical development notes
 
-To evaluate on real experimental data (Single-shot vs Averaged pairs):
+The repository preserves version-comparison and changelog documents for traceability:
 
-```bash
-python espi_dncnn_lite_eca.py \
-    --clean-root /path/to/averaged_references \
-    --real-noisy-root /path/to/single_shot_noisy \
-    --resume ./checkpoints/best.pth \
-    --val-ratio 0.0 \
-    --epochs 0
-```
+- `DNCNN_VERSIONS_COMPARISON_REPORT.md`
+- `V4_CHANGELOG_AND_EXPECTED_IMPACT.md`
+- `V5_CHANGELOG.md`
 
-### ONNX Export
+These notes are useful for understanding architecture evolution, but the **canonical final thesis evidence** is the curated package in `results/v4v5_final/`.
 
-Export the trained model for portable inference:
+## Related repositories
 
-```bash
-python espi_dncnn_lite_eca.py ... --export-onnx model.onnx
-```
+The thesis codebase is split across the following repositories:
 
-## 📊 Thesis Final Results (V4/V5 Canonical Package)
+- **DnCNN-ECA denoising (this repository)** (`https://github.com/GeorgeSpy/ESPI-DnCNN-ECA`)
+- **ESPI classification and evaluation** (`https://github.com/GeorgeSpy/espi-classification-models_2`)
+- **Pseudo-noisy data generation** (`https://github.com/GeorgeSpy/ESPI-pseydonoisy-generator`)
 
-The **final thesis conclusions** are based on the **V4/V5 canonical package** (see `results/v4v5_final/`).
+## License
 
-### Main Findings (Final Thesis)
-
-* **Regime-dependent behavior**: The supervision regime matters more than the architecture variant. Denoisers trained on **pseudo-noisy (synthetic)** data can degrade downstream classification, while denoisers trained on **real-aligned pairs** improve downstream performance.
-* **Optimal architecture (V4R ECA)**: The lightweight **V4R ECA** design (3 attention layers), trained on real-aligned data, achieves the best overall downstream performance (**98.87% Accuracy, 96.64% Macro-F1**).
-* **Robustness vs complexity trade-off**: The aggressive **V5** design (7 attention layers, dual-pooling) incurs a large latency overhead (~**+360%**) and higher variability without consistent gains. **V4** remains the best balance of performance, robustness, and cost.
-
-### Canonical thesis package (what to use)
-
-* `results/v4v5_final/` — consolidated CSV tables for downstream metrics, robustness, and latency
-* `scripts/` — minimal plotting utilities to reproduce thesis figures from the canonical CSV tables
-* `docs/THESIS_RESULTS_NOTES.md` — mapping of repository files to thesis chapter/appendix tables/figures
-
-## 🧭 Legacy v3 / Pilot Results (Historical Context)
-
-Earlier **v3** experiments (including initial ECA vs non-ECA ablations and pilot evaluation tracks) are preserved for historical traceability and project development context.
-
-> These legacy findings are useful for understanding the project evolution, but **they do not represent the final thesis pipeline or final thesis conclusions**.
-
-## 📈 Regenerate Thesis Figures (from canonical CSVs)
-
-From the repository root:
-
-```bash
-python scripts/plot_downstream_v4v5.py --input results/v4v5_final/plots_data_accuracy_macrof1.csv --out figures
-python scripts/plot_robustness.py --input results/v4v5_final/plots_data_robustness.csv --out figures
-python scripts/plot_latency.py --input results/v4v5_final/latency_params_summary.csv --out figures --with-params
-```
-
-This generates PNG/SVG figures for:
-
-* downstream Accuracy
-* downstream Macro-F1
-* robustness (mean±std error bars)
-* latency (and optional parameter count)
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) for details.
+This repository is released under the MIT License. See `LICENSE` for details.

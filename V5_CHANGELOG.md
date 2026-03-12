@@ -1,4 +1,4 @@
-﻿# DnCNN Lite ECA v5 - Changelog
+# DnCNN Lite ECA v5 - Changelog
 
 ## New in v5
 
@@ -49,9 +49,9 @@ Primary expected gains:
 - similar or slightly improved PSNR
 
 Typical realistic range vs no-ECA:
-- ΔPSNR: -0.05 to +0.40 dB
-- ΔSSIM: +0.00 to +0.04
-- ΔEdgeF1: +0.01 to +0.04
+- dPSNR: -0.05 to +0.40 dB
+- dSSIM: +0.00 to +0.04
+- dEdgeF1: +0.01 to +0.04
 
 ## Risk notes
 - Multi-scale + learnable params increases optimization complexity.
