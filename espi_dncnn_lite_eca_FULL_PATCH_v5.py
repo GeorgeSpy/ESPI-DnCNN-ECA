@@ -405,7 +405,7 @@ def denoise_tiled(model: nn.Module, image: torch.Tensor, tile: int = 256, overla
 # ---------------- Synthetic Noise & Augmentations ----------------
 
 def add_burr_speckle(x, c=4.687, k=1189.53, strength=0.25):
-    """Multiplicative Burr-XII speckle; meanβ‰1 scaling."""
+    """Multiplicative Burr-XII speckle; mean ~ 1 scaling."""
     u = torch.rand_like(x).clamp(1e-6, 1-1e-6)
     m = ((1 - u)**(-1.0/k) - 1.0).clamp(min=0) ** (1.0/c)
     m = m / (m.mean() + 1e-9)
@@ -507,8 +507,8 @@ class RealPairDataset(Dataset):
 
 # ---------------- AMP helpers ----------------
 
-def get_amp_objects(device: torch.device):
-    use_cuda = (device.type == "cuda")
+def get_amp_objects(device: torch.device, enabled: bool = True):
+    use_cuda = (device.type == "cuda") and enabled
     if AMP_NEW:
         scaler = AmpGradScaler("cuda", enabled=use_cuda)
         if use_cuda:
@@ -586,6 +586,7 @@ class Args:
     log_grad_norm: bool
     freeze_norm_epoch: int
     real_eval_every: int
+    no_amp: bool
 
 def build_loaders(a: Args, device: torch.device):
     root = Path(a.clean_root); paths = list_pngs(root)
@@ -915,7 +916,7 @@ def main(a: Args):
             print(f"[RESUME] Requested but checkpoint not found: {ckpt_path}")
 
     # AMP
-    scaler, autocast_ctx = get_amp_objects(device)
+    scaler, autocast_ctx = get_amp_objects(device, enabled=not a.no_amp)
 
     # TensorBoard
     writer = None
@@ -1142,6 +1143,7 @@ def parse_args() -> Args:
     p.add_argument("--log-grad-norm", action="store_true", help="log mean gradient norm per epoch")
     p.add_argument("--freeze-norm-epoch", type=int, default=0, help="0=never; otherwise freeze BN/GN at this epoch")
     p.add_argument("--real-eval-every", type=int, default=5, help="0=off; otherwise run REAL evaluation every N epochs")
+    p.add_argument("--no-amp", action="store_true", help="disable AMP (automatic mixed precision)")
     a = p.parse_args()
     return Args(
         clean_root=a.clean_root, output_dir=a.output_dir, split_mode=a.split_mode, val_ratio=a.val_ratio,
@@ -1168,7 +1170,8 @@ def parse_args() -> Args:
         separate_eca_param_optim=bool(a.separate_eca_param_optim),
         grad_clip=a.grad_clip, max_nonfinite_batches=a.max_nonfinite_batches,
         nan_action=a.nan_action, log_grad_norm=bool(a.log_grad_norm),
-        freeze_norm_epoch=a.freeze_norm_epoch, real_eval_every=a.real_eval_every
+        freeze_norm_epoch=a.freeze_norm_epoch, real_eval_every=a.real_eval_every,
+        no_amp=bool(a.no_amp)
     )
 
 if __name__ == "__main__":

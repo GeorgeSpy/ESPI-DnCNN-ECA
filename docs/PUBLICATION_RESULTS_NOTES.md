@@ -1,6 +1,6 @@
-# Thesis Results Notes (Repository-to-Thesis Mapping)
+# publication Results Notes (Repository-to-publication Mapping)
 
-This note maps repository result files to thesis tables and figures.
+This note maps repository result files to publication tables and figures.
 
 ## Chapter 4 (DnCNN / ECA / downstream)
 
@@ -23,9 +23,9 @@ This note maps repository result files to thesis tables and figures.
   - Used for the cost and latency summary table
   - Optional latency plot source
 
-## Interpretation note for thesis alignment
+## Interpretation note for publication alignment
 
-The V4/V5 findings belong to the **mature 5-class downstream phase** of the thesis and should not be interpreted as a direct numerical continuation of the earlier Chapter 4 ablation stage. They reflect the later curated evaluation package used for the final thesis interpretation.
+The V4/V5 findings belong to the **mature 5-class downstream phase** of the publication and should not be interpreted as a direct numerical continuation of the earlier Chapter 4 ablation stage. They reflect the later curated evaluation package used for the final publication interpretation.
 
 ## Appendix Theta
 
@@ -33,4 +33,4 @@ Appendix Theta contains the extended V4/V5 analysis narrative, including regime-
 
 ## Legacy v3 note
 
-Earlier v3 and pilot-stage findings are preserved for historical traceability, but the final thesis conclusions rely on the curated V4/V5 package.
+Earlier v3 and pilot-stage findings are preserved for historical traceability, but the final publication conclusions rely on the curated V4/V5 package.

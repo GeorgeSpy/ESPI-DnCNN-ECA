@@ -1,6 +1,6 @@
-# V4/V5 Final Thesis Results (Canonical Package)
+# V4/V5 Final publication Results (Canonical Package)
 
-This directory contains the **canonical final result tables** used in the thesis, primarily for Chapter 4 and Appendix Theta.
+This directory contains the **canonical final result tables** used in the publication, primarily for Chapter 4 and Appendix Theta.
 
 ## Files
 
@@ -19,13 +19,13 @@ This directory contains the **canonical final result tables** used in the thesis
 - `plots_data_robustness.csv`  
   Plot-ready table for the robustness figure, including Macro-F1@BestF1 and Accuracy@BestF1 summaries.
 
-## Thesis mapping
+## publication mapping
 
 - Chapter 4.3: DnCNN / ECA / downstream impact
 - Appendix Theta: extended V4/V5 analysis, diagnostics, robustness, and cost
 
 ## Canonical note
 
-Only the files in this directory should be treated as the **final curated thesis evidence**.
+Only the files in this directory should be treated as the **final curated publication evidence**.
 
 Exploratory or legacy outputs from older evaluator tracks may exist elsewhere for historical traceability, but they should not override the package documented here.
