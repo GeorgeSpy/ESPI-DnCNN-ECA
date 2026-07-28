@@ -1,0 +1,11 @@
+model,class_id,board_balanced_f1_mean
+unet_gn_noeca_epoch15,0,0.1409185320
+unet_gn_noeca_epoch15,1,0.0521378341
+unet_gn_noeca_epoch15,2,0.0109085487
+unet_gn_noeca_epoch15,3,0.0235024474
+unet_gn_noeca_epoch15,4,0.6890032129
+unet_gn_eca3_epoch15,0,0.2895294887
+unet_gn_eca3_epoch15,1,0.3396597904
+unet_gn_eca3_epoch15,2,0.0155038760
+unet_gn_eca3_epoch15,3,0.1124613482
+unet_gn_eca3_epoch15,4,0.8738837837

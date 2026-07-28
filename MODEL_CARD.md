@@ -1,5 +1,9 @@
 # Model Card - ESPI DnCNN-ECA Variants
 
+> **2026 revision:** the historical three-run robustness result is a pilot with
+> incomplete seed propagation. Use
+> `results/revision_2026_corrected_robustness/` for current robustness claims.
+
 ## Overview
 
 This repository contains lightweight DnCNN-style denoisers for ESPI imagery, with emphasis on Efficient Channel Attention (ECA) ablations and final thesis-era V4/V5 comparisons.
@@ -16,20 +20,27 @@ The repository also preserves historical baseline material associated with the V
 
 The task is denoising of ESPI measurements or aligned ESPI-derived image pairs, with evaluation in both direct image-quality metrics and downstream classification impact.
 
-## Reported thesis conclusions
+## Corrected evidence summary
 
-The curated final thesis package supports the following high-level conclusions:
+The corrected evidence supports the following high-level conclusions:
 
-- Real-aligned denoiser supervision is more important than adding architectural complexity alone.
-- Synthetic pseudo-noisy supervision can improve denoising metrics while still degrading downstream classification.
-- The best overall downstream results were obtained by the **V4R ECA** configuration trained on real-aligned pairs.
-- The more aggressive **V5** design increases cost substantially and is treated as an exploratory extension rather than the preferred overall thesis choice.
+- Real-aligned supervision and output-contract design matter at least as much as
+  architecture complexity.
+- Reconstruction metrics alone do not guarantee downstream utility.
+- The corrected five-seed in-distribution sweep favors **V5R aggressive ECA**
+  over **V4R light ECA**.
+- The six-board transfer audit does not show a universal denoising advantage over
+  a noise-adapted Raw baseline.
+- A matched U-Net GroupNorm ablation suggests that ECA reduces board-specific
+  instability and improves Macro-F1, but the current U-Net result uses seed 42.
+- NAFNet-Tiny with the audited proxy-target contract is a negative control for
+  whitening-induced downstream collapse.
 
-Representative thesis-level downstream results from the canonical package:
+Representative corrected five-seed means:
 
-- **Raw classification pipeline:** 97.70% accuracy, 93.99% Macro-F1
-- **V4R no-ECA denoised pipeline:** 98.76% accuracy, 96.07% Macro-F1
-- **V4R ECA denoised pipeline:** 98.87% accuracy, 96.64% Macro-F1
+- **Raw:** 93.28% Accuracy, 84.39% Macro-F1
+- **V4R light ECA:** 92.54% Accuracy, 82.69% Macro-F1
+- **V5R aggressive ECA:** 94.29% Accuracy, 85.89% Macro-F1
 
 ## Inputs and outputs
 
@@ -68,7 +79,11 @@ The main limitations are the following:
 - the raw project datasets are not included in the public repository,
 - exact thesis data curation pipelines live partly outside this repository,
 - denoising metrics alone are not sufficient to select the best model for downstream use,
-- the final thesis conclusions rely on curated result tables, not on any single metric in isolation.
+- board-grouped transfer currently uses seed 42,
+- the U-Net matched ablation is not yet a multi-seed denoiser-training estimate,
+- class 2 remains difficult under the grouped protocol,
+- the final conclusions rely on multiple protocols and must not pool their
+  statistical units.
 
 ## Scientific notes
 

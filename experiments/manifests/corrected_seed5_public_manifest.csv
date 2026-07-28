@@ -1,0 +1,16 @@
+seed,model_family,eca_setting,eca_positions,normalization,supervision,stress_sigma_8bit,status
+42,Raw,none,,none,none,25,complete
+42,DnCNN-Lite V4R,light,"0,1,2",GroupNorm(8),real-aligned,25,complete
+42,DnCNN-Lite V5R,aggressive,"0,1,2,3,6,10,14",GroupNorm(8),real-aligned,25,complete
+13,Raw,none,,none,none,25,complete
+13,DnCNN-Lite V4R,light,"0,1,2",GroupNorm(8),real-aligned,25,complete
+13,DnCNN-Lite V5R,aggressive,"0,1,2,3,6,10,14",GroupNorm(8),real-aligned,25,complete
+37,Raw,none,,none,none,25,complete
+37,DnCNN-Lite V4R,light,"0,1,2",GroupNorm(8),real-aligned,25,complete
+37,DnCNN-Lite V5R,aggressive,"0,1,2,3,6,10,14",GroupNorm(8),real-aligned,25,complete
+101,Raw,none,,none,none,25,complete
+101,DnCNN-Lite V4R,light,"0,1,2",GroupNorm(8),real-aligned,25,complete
+101,DnCNN-Lite V5R,aggressive,"0,1,2,3,6,10,14",GroupNorm(8),real-aligned,25,complete
+202,Raw,none,,none,none,25,complete
+202,DnCNN-Lite V4R,light,"0,1,2",GroupNorm(8),real-aligned,25,complete
+202,DnCNN-Lite V5R,aggressive,"0,1,2,3,6,10,14",GroupNorm(8),real-aligned,25,complete

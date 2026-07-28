@@ -1,82 +1,115 @@
 # ESPI-DnCNN-ECA: Lightweight Denoising for ESPI Interferometry
 
-This repository contains the public denoising code used in the scientific research on Electronic Speckle Pattern Interferometry (ESPI), together with the curated V4/V5 result package used for the final paper evaluation and publication evidence.
+This repository contains the public DnCNN-Lite/ECA denoising code used in the
+ESPI study, together with curated result tables for reconstruction-aware and
+downstream classification analysis.
 
-The repository focuses on the **denoising stage** of the broader workflow. It includes the main DnCNN-Lite variants with Efficient Channel Attention (ECA), lightweight plotting utilities for the manuscript publication figures, and canonical CSV result tables for downstream comparison, robustness, and latency analysis.
+## 2026 reproducibility correction
 
-It should be read as **the public denoising component of the publication framework, with V3 retained for historical baseline context and V4/V5 retained as the final curated publication results**.
+The previous three-run robustness result is retained only as a historical pilot.
+A protocol audit found incomplete seed propagation, so it must not be treated as
+an independent three-seed estimate and its old p-value must not be used in a
+revised paper.
 
-## Repository scope within the publication framework
+The current revision evidence is in
+[`results/revision_2026_corrected_robustness/`](results/revision_2026_corrected_robustness/):
 
-The full scientific pipeline spans three code components:
+- corrected seed-aware five-seed retraining/evaluation with seeds
+  `42, 13, 37, 101, 202`;
+- a locked six-board grouped transfer audit;
+- a matched U-Net GroupNorm no-ECA/ECA sensitivity analysis;
+- an output-contract audit including a NAFNet-Tiny failure-mode control.
 
-1. **Pseudo-noisy data generation** for supervision and controlled ablations.
-2. **DnCNN-ECA denoising**, which is the scope of this repository.
-3. **Classification and evaluation**, maintained in a separate repository.
+The historical package in [`results/v4v5_final/`](results/v4v5_final/) remains
+available for traceability but is no longer the canonical robustness evidence.
 
-In practical terms, this repository corresponds to the denoising component plus the final V4/V5 publication result package.
+## Repository scope
 
-## What this repository contains
+The complete research workflow spans three components:
 
-- Historical baseline script: `espi_dncnn_lite_eca.py`
-- Fair-ablation and robustness-oriented v4 script: `espi_dncnn_lite_eca_FULL_PATCH_v4.py`
-- Extended research-oriented v5 script: `espi_dncnn_lite_eca_FULL_PATCH_v5.py`
-- Canonical publication result tables in `results/v4v5_final/`
-- Plotting scripts in `scripts/`
-- Supporting notes, changelogs, and publication mapping documents
+1. pseudo-noisy and real-aligned supervision data generation;
+2. DnCNN-ECA denoising, which is the scope of this repository;
+3. downstream classification and evaluation, maintained separately.
 
-## Canonical public entry points
+Raw datasets, checkpoints, classifier weights, and machine-specific experiment
+outputs are intentionally not included.
+
+## Public model entry points
 
 | Purpose | File |
 |---|---|
-| Lightweight baseline / core DnCNN-Lite ECA script | `espi_dncnn_lite_eca.py` |
-| Stable v4 comparison script with fair ECA vs no-ECA controls | `espi_dncnn_lite_eca_FULL_PATCH_v4.py` |
-| Extended v5 research script with dual pooling and advanced ECA options | `espi_dncnn_lite_eca_FULL_PATCH_v5.py` |
-| Downstream result figure generation | `scripts/plot_downstream_v4v5.py` |
-| Robustness figure generation | `scripts/plot_robustness.py` |
-| Latency figure generation | `scripts/plot_latency.py` |
+| Lightweight historical baseline | `espi_dncnn_lite_eca.py` |
+| V4 fair-ablation/light-ECA model | `espi_dncnn_lite_eca_FULL_PATCH_v4.py` |
+| V5 aggressive/research ECA model | `espi_dncnn_lite_eca_FULL_PATCH_v5.py` |
 
-## Final Publication Package
+The corrected V4R configuration uses GroupNorm(8) with ECA positions
+`[0,1,2]`. The corrected V5R configuration uses GroupNorm(8) with positions
+`[0,1,2,3,6,10,14]`.
 
-The **final manuscript conclusions** are tied to the curated package in `results/v4v5_final/`.
+## Corrected five-seed result
 
-Key conclusions supported by that package include:
+The corrected replication explicitly propagates each seed through Python,
+NumPy, PyTorch CPU/CUDA, the data split, additive stress noise, classifier
+training, and checkpoint selection.
 
-- The **supervision regime** matters more than architecture complexity alone.
-- Models trained on **pseudo-noisy synthetic supervision** can hurt downstream classification, even when denoising metrics appear favorable.
-- Models trained on **real-aligned pairs** improve downstream classification performance and support the final system-level publication conclusion.
-- The lightweight **V4R ECA** configuration is the best practical balance of downstream performance, robustness, and computational cost in the final publication package.
-- The more aggressive **V5** design is preserved as a higher-cost exploratory extension rather than the definitive best model.
+| Model | Accuracy mean +/- SD | Macro-F1 mean +/- SD |
+|---|---:|---:|
+| Raw | 0.9328 +/- 0.0158 | 0.8439 +/- 0.0164 |
+| V4R light ECA | 0.9254 +/- 0.0178 | 0.8269 +/- 0.0227 |
+| V5R aggressive ECA | **0.9429 +/- 0.0144** | **0.8589 +/- 0.0314** |
 
-## Unified Multi-Seed Robustness & Complexity Findings
+V5R is higher than V4R on all five seeds. Mean paired V5R-minus-V4R effects
+are `+0.0175` Accuracy and `+0.0319` Macro-F1. This suggests that the aggressive
+V5R configuration is more robust than V4R under the original in-distribution
+protocol. It does not isolate the presence of ECA because both models contain
+ECA and differ in attention density/configuration.
 
-To establish the definitive scientific consensus for publication, we conducted a rigorous 3-seed multi-run sweep under extreme stress noise ($\sigma = 25$) with spatial augmentations disabled on validation sets to evaluate generalization capability.
+V5R is only modestly higher than Raw on average, with intervals crossing zero;
+therefore the corrected sweep does not establish a universal denoising benefit.
 
-### 1. Robustness Stress Sweep Results (n = 3 seeds, $\sigma = 25$)
-Standard deviations are reported as population standard deviations (ddof = 0) for consistent empirical grouping:
+## Locked six-board transfer result
 
-| Model | Mean Validation Acc (%) | Mean Validation Macro-F1 (%) | Raw Accuracy Data | Raw Macro-F1 Data |
-| :--- | :---: | :---: | :--- | :--- |
-| **RAW Baseline** | 94.22% ± 0.86% | 84.35% ± 0.84% | [93.98%, 95.37%, 93.30%] | [84.91%, 84.98%, 83.16%] |
-| **V4R (Light ECA)** | **95.76% ± 0.49%** | **87.65% ± 1.50%** | [96.16%, 96.05%, 95.07%] | [88.93%, 88.47%, 85.54%] |
-| **V5R (Aggressive)** | 94.37% ± 0.71% | 84.91% ± 1.87% | [94.47%, 95.18%, 93.45%] | [85.41%, 86.91%, 82.41%] |
+| Model | Accuracy mean | Macro-F1 mean |
+|---|---:|---:|
+| Raw | 0.8314 | **0.4970** |
+| V4R light ECA | 0.8294 | 0.4395 |
+| V5R aggressive ECA | **0.8321** | 0.4681 |
 
-* **Statistical Significance (V4R vs V5R)**: A paired t-test yields $p = 0.0447$ ($p < 0.05$, $n=3$, 2 degrees of freedom) with a Cohen's $d = +2.64$ effect size. This confirms that the simpler **V4R (Light ECA)** model statistically outperforms **V5R (Aggressive ECA)**.
-* **Footnote / Caveat**: "Preliminary analysis; n=3 seeds. A larger sweep (n >= 5) would be needed for conclusive inference."
+The board-grouped audit does not show a universal transfer advantage for either
+denoiser. Results are board- and material-dependent: V5R is more favorable on
+several wood boards, whereas Raw is stronger on the carbon subset. This audit
+must not be pooled with the random-split five-seed result because the protocols
+estimate different quantities.
 
-### 2. GPU Latency & Parameter Counts (NVIDIA RTX 3060, Batch=1, 256x256)
-Latency measures include full CUDA synchronization and 50 warmup iterations to isolate real inference cost:
+## Matched U-Net ECA sensitivity
 
-| Model | Parameter Count | GPU Latency (ms) | Inference Overhead (%) |
-| :--- | :---: | :---: | :---: |
-| **DnCNN Base (Static)** | 139,776 | 6.621 ms | — |
-| **DnCNN V4 ECA (3 Pos)** | 139,785 | 6.912 ms | **+4.4%** (negligible) |
-| **DnCNN V5 ECA (7 Pos)** | 139,832 | 29.771 ms | **+349.7%** (severe bottleneck) |
+A residual U-Net-Lite with GroupNorm was evaluated at the same epoch, seed,
+classifier protocol, and common-parameter initialization.
 
-### 3. Key Theoretical Foundations of the Framework
-* **GroupNorm Necessity**: BatchNorm neutralizes dynamic channel attention scaling since channel-wise normalization scales channels back to zero mean and unit variance. Replacing it with GroupNorm (specifically GroupNorm(8)) is mandatory to preserve attention gains.
-* **Dataset Diversity Advantage**: Denoising the 23,891 real noisy-clean training pairs is superior to directly utilizing cleaner averaged ground-truth target images. Denoising preserves the rich sample diversity (13,000+ unique specimens) compared to averaged frames (under 750 specimens), stabilizing and boosting training.
-* **Anti-Leakage Validation**: The validation sets were evaluated under stress noise without spatial augmentations (flips/rotations) to guarantee no data leakage occurred during empirical estimation.
+| U-Net variant | Board-balanced Accuracy | Board-balanced Macro-F1 |
+|---|---:|---:|
+| GN no ECA | 0.5940 | 0.1833 |
+| GN ECA at enc0/enc1/enc2 | **0.7525** | **0.3262** |
+
+Macro-F1 improves on all six boards, with a mean paired effect of `+0.1429`
+(exploratory 95% interval `[0.0350, 0.2508]`). Accuracy improves on four of six
+boards. The result suggests that ECA can reduce architecture-specific
+instability, but it is currently a seed-42 architecture sensitivity rather than
+a five-seed U-Net confirmation.
+
+## Reconstruction is not downstream utility
+
+The output-contract audit shows that DnCNN V4R/V5R preserve substantially more
+of the original ESPI input than the tested U-Net and NAFNet configurations.
+NAFNet-Tiny native SCA fits nearly white averaged proxy targets but collapses on
+C01 downstream evaluation (`0.0901` Accuracy, `0.0778` Macro-F1).
+
+The supported conclusion is therefore conditional:
+
+> Denoising can improve downstream classification when it preserves
+> class-discriminative ESPI structure. ECA may stabilize a residual architecture,
+> but reconstruction quality or architecture modernity alone does not guarantee
+> downstream benefit.
 
 ## Repository layout
 
@@ -85,67 +118,38 @@ Latency measures include full CUDA synchronization and 50 warmup iterations to i
 |-- README.md
 |-- REPRODUCE.md
 |-- MODEL_CARD.md
-|-- DNCNN_VERSIONS_COMPARISON_REPORT.md
-|-- V4_CHANGELOG_AND_EXPECTED_IMPACT.md
-|-- V5_CHANGELOG.md
-|-- CITATION.cff
-|-- requirements.txt
 |-- docs/
 |   |-- REPOSITORY_SCOPE.md
-|   `-- PUBLICATION_RESULTS_NOTES.md
+|   |-- PUBLICATION_RESULTS_NOTES.md
+|   `-- REVISION_RESULTS_2026.md
 |-- experiments/
 |   `-- manifests/
-|       `-- TEMPLATE_run_manifest.yaml
+|       |-- TEMPLATE_run_manifest.yaml
+|       `-- corrected_seed5_public_manifest.csv
 |-- results/
-|   `-- v4v5_final/
-|       |-- README_RESULTS.md
-|       |-- downstream_summary.csv
-|       |-- robustness_3seed_summary.csv
-|       |-- latency_params_summary.csv
-|       |-- plots_data_accuracy_macrof1.csv
-|       `-- plots_data_robustness.csv
-`-- scripts/
-    |-- plot_downstream_v4v5.py
-    |-- plot_robustness.py
-    `-- plot_latency.py
+|   |-- v4v5_final/                         # historical package
+|   `-- revision_2026_corrected_robustness/ # current revision evidence
+|-- scripts/
+|-- espi_dncnn_lite_eca.py
+|-- espi_dncnn_lite_eca_FULL_PATCH_v4.py
+`-- espi_dncnn_lite_eca_FULL_PATCH_v5.py
 ```
 
-## Installation
+## Installation and reproduction
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Requirements are intentionally minimal and centered on the PyTorch training and plotting stack.
-
-## Reproducibility and usage
-
-See `REPRODUCE.md` for command-line examples aligned with the public scripts.
-
-For project-file mapping, see:
-
-- `docs/REPOSITORY_SCOPE.md`
-- `docs/PUBLICATION_RESULTS_NOTES.md`
-- `results/v4v5_final/README_RESULTS.md`
-
-## Historical development notes
-
-The repository preserves version-comparison and changelog documents for traceability:
-
-- `DNCNN_VERSIONS_COMPARISON_REPORT.md`
-- `V4_CHANGELOG_AND_EXPECTED_IMPACT.md`
-- `V5_CHANGELOG.md`
-
-These notes are useful for understanding architecture evolution. In particular, **V3 is retained as historical baseline context**, while the **canonical final publication results** is the curated V4/V5 package in `results/v4v5_final/`.
+See [`REPRODUCE.md`](REPRODUCE.md) for script usage and the interpretation
+boundary of the public result tables.
 
 ## Related repositories
 
-The research codebase is split across the following repositories:
-
-- **DnCNN-ECA denoising (this repository)** (`https://github.com/GeorgeSpy/ESPI-DnCNN-ECA`)
-- **ESPI classification and evaluation** (`https://github.com/GeorgeSpy/espi-classification-models_2`)
-- **Pseudo-noisy data generation** (`https://github.com/GeorgeSpy/ESPI-pseydonoisy-generator`)
+- DnCNN-ECA denoising: <https://github.com/GeorgeSpy/ESPI-DnCNN-ECA>
+- ESPI classification/evaluation: <https://github.com/GeorgeSpy/espi-classification-models_2>
+- Pseudo-noisy generation: <https://github.com/GeorgeSpy/ESPI-pseydonoisy-generator>
 
 ## License
 
-This repository is released under the MIT License. See `LICENSE` for details.
+Released under the MIT License. See [`LICENSE`](LICENSE).

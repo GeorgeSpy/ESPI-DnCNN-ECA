@@ -1,0 +1,7 @@
+model,output_mean,input_output_correlation,contrast_retention,gradient_retention,mean_absolute_change,fraction_at_one
+raw,0.1559,1.0000,1.000,1.000,0.0000,0.0001
+v4r_light_eca,0.1642,0.7533,0.543,0.166,0.0696,0.0000
+v5r_aggressive_eca,0.1600,0.8400,0.667,0.323,0.0552,0.0000
+unet_gn_noeca,0.9553,-0.3612,1.027,0.184,0.7998,0.2160
+unet_gn_eca3,0.9445,-0.2807,1.322,0.169,0.7892,0.1499
+nafnet_tiny_native_sca,0.9867,0.0634,0.766,0.033,0.8315,0.4353
