@@ -20,6 +20,10 @@ The current revision evidence is in
 - a matched U-Net GroupNorm no-ECA/ECA sensitivity analysis;
 - an output-contract audit including a NAFNet-Tiny failure-mode control.
 
+The consolidated interpretation, claim boundaries, and completion decision are
+documented in
+[`docs/FINAL_REVISION_REPORT_2026.md`](docs/FINAL_REVISION_REPORT_2026.md).
+
 The historical package in [`results/v4v5_final/`](results/v4v5_final/) remains
 available for traceability but is no longer the canonical robustness evidence.
 
@@ -121,6 +125,7 @@ The supported conclusion is therefore conditional:
 |-- docs/
 |   |-- REPOSITORY_SCOPE.md
 |   |-- PUBLICATION_RESULTS_NOTES.md
+|   |-- FINAL_REVISION_REPORT_2026.md
 |   `-- REVISION_RESULTS_2026.md
 |-- experiments/
 |   `-- manifests/
