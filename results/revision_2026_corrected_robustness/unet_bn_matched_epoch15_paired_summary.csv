@@ -1,0 +1,3 @@
+scope,metric,n,mean_delta,sd_delta,ci95_low,ci95_high,wins,ties,losses,cohens_dz,exact_sign_flip_p
+all_6_boards,accuracy,6,0.0774090483,0.2569255595,-0.1922177906,0.3470358873,3,0,3,0.3012897917,0.50000
+all_6_boards,macro_f1,6,-0.0144151185,0.0899116191,-0.1087715761,0.0799413390,2,0,4,-0.1603254249,0.75000

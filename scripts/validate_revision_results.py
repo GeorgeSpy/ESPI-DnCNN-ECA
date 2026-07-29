@@ -102,6 +102,58 @@ def validate_unet_pairs() -> None:
             raise AssertionError(f"U-Net loss count {result}")
 
 
+def validate_unet_bn_pairs() -> None:
+    board = rows("unet_bn_matched_epoch15_paired_board_effects.csv")
+    summary = rows("unet_bn_matched_epoch15_paired_summary.csv")
+    if len(board) != 6 or len(summary) != 2:
+        raise AssertionError("Unexpected U-Net BN table row count")
+    for result in summary:
+        metric = result["metric"]
+        values = [float(row[f"delta_{metric}"]) for row in board]
+        mean, sd, low, high = mean_sd_ci(values)
+        close(mean, float(result["mean_delta"]), f"U-Net BN mean {result}")
+        close(sd, float(result["sd_delta"]), f"U-Net BN sd {result}")
+        close(low, float(result["ci95_low"]), f"U-Net BN ci low {result}")
+        close(high, float(result["ci95_high"]), f"U-Net BN ci high {result}")
+        close(exact_sign_flip_p(values), float(result["exact_sign_flip_p"]), f"U-Net BN sign flip {result}")
+        if sum(value > 0 for value in values) != int(result["wins"]):
+            raise AssertionError(f"U-Net BN win count {result}")
+        if sum(value < 0 for value in values) != int(result["losses"]):
+            raise AssertionError(f"U-Net BN loss count {result}")
+
+
+def validate_unet_normalization_context() -> None:
+    bn = rows("unet_bn_matched_epoch15_paired_board_effects.csv")
+    gn = rows("unet_matched_epoch15_paired_board_effects.csv")
+    summary = rows("unet_eca_normalization_matched_epoch15_summary.csv")
+    if len(bn) != 6 or len(gn) != 6 or len(summary) != 6:
+        raise AssertionError("Unexpected U-Net normalization-context row count")
+    if [row["board"] for row in bn] != [row["board"] for row in gn]:
+        raise AssertionError("U-Net BN/GN board order mismatch")
+    expected: dict[tuple[str, str], list[float]] = {}
+    for metric in ("accuracy", "macro_f1"):
+        bn_values = [float(row[f"delta_{metric}"]) for row in bn]
+        gn_values = [float(row[f"delta_{metric}"]) for row in gn]
+        expected[("BN_ECA3_minus_NoECA", metric)] = bn_values
+        expected[("GN_ECA3_minus_NoECA", metric)] = gn_values
+        expected[("GN_minus_BN_interaction", metric)] = [
+            gn_value - bn_value
+            for gn_value, bn_value in zip(gn_values, bn_values)
+        ]
+    for result in summary:
+        values = expected[(result["effect"], result["metric"])]
+        mean, sd, low, high = mean_sd_ci(values)
+        close(mean, float(result["mean_delta"]), f"normalization mean {result}")
+        close(sd, float(result["sd_delta"]), f"normalization sd {result}")
+        close(low, float(result["ci95_low"]), f"normalization ci low {result}")
+        close(high, float(result["ci95_high"]), f"normalization ci high {result}")
+        close(exact_sign_flip_p(values), float(result["exact_sign_flip_p"]), f"normalization sign flip {result}")
+        if sum(value > 0 for value in values) != int(result["wins"]):
+            raise AssertionError(f"normalization win count {result}")
+        if sum(value < 0 for value in values) != int(result["losses"]):
+            raise AssertionError(f"normalization loss count {result}")
+
+
 def validate_public_paths() -> None:
     for path in RESULTS.glob("*.csv"):
         text = path.read_text(encoding="utf-8")
@@ -113,8 +165,10 @@ def main() -> None:
     validate_seed_summary()
     validate_grouped_summary()
     validate_unet_pairs()
+    validate_unet_bn_pairs()
+    validate_unet_normalization_context()
     validate_public_paths()
-    print("Revision result validation passed: seed5, grouped-six-board, and matched U-Net tables are consistent.")
+    print("Revision result validation passed: seed5, grouped-six-board, matched U-Net, and normalization-interaction tables are consistent.")
 
 
 if __name__ == "__main__":

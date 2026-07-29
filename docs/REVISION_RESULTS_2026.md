@@ -53,28 +53,49 @@ boards, while V5R is more favorable on several wood boards. With three boards
 per material, this remains an effect-size observation rather than confirmation
 of a material interaction.
 
-## Matched ECA ablation in U-Net
+## Matched ECA-by-normalization ablation in U-Net
 
-To isolate an ECA effect in another residual architecture, U-Net GN no-ECA and
-U-Net GN ECA3 were compared at epoch 15 under common initialization and the
-same downstream protocol.
+To isolate ECA in another residual architecture, no-ECA and ECA3 U-Nets were
+compared at epoch 15 under common initialization and the same downstream
+protocol. The comparison was completed under both GroupNorm and BatchNorm.
 
-| Board | ECA-minus-no-ECA Accuracy | ECA-minus-no-ECA Macro-F1 |
-|---|---:|---:|
-| C01 | +0.0004 | +0.0588 |
-| C02 | -0.0250 | +0.0703 |
-| C03 | +0.4292 | +0.1349 |
-| W01 | +0.3938 | +0.3425 |
-| W02 | +0.1664 | +0.1237 |
-| W03 | -0.0138 | +0.1272 |
+| Normalization | Endpoint | Mean ECA-minus-no-ECA change | 95% interval | Wins | Exact sign-flip p |
+|---|---|---:|---:|---:|---:|
+| GroupNorm | Accuracy | +0.1585 | [-0.0601, 0.3772] | 4/6 | 0.21875 |
+| GroupNorm | Macro-F1 | **+0.1429** | **[0.0350, 0.2508]** | **6/6** | **0.03125** |
+| BatchNorm | Accuracy | +0.0774 | [-0.1922, 0.3470] | 3/6 | 0.50000 |
+| BatchNorm | Macro-F1 | -0.0144 | [-0.1088, 0.0799] | 2/6 | 0.75000 |
 
-Macro-F1 improves on all six boards. The mean paired change is `+0.1429`, with
-an exploratory interval `[0.0350, 0.2508]`, Cohen's `dz = 1.39`, and exact
-sign-flip `p = 0.03125`. These calculations are descriptive because the folds
-share training boards and only seed 42 was used.
+The matched Macro-F1 interaction, defined as the GroupNorm ECA effect minus the
+BatchNorm ECA effect, is `+0.1573` with an exploratory interval
+`[-0.0003, 0.3150]`, positive effects on five of six boards, and exact
+sign-flip `p = 0.0625`. The result suggests that ECA utility depends on the
+surrounding normalization regime. It does not justify a universal claim that
+ECA stabilizes U-Net.
 
-Per-class analysis shows improvements for classes 0, 1, 3, and 4. Class 2
-remains near zero, so ECA does not solve the full class-imbalance problem.
+BatchNorm checkpoint selection is also relevant. The minimum-validation-loss
+ECA checkpoint at epoch 16 produced a mean Macro-F1 effect of `-0.0732`, while
+strict epoch matching at epoch 15 attenuated that estimate to `-0.0144`.
+Therefore the apparent BN-ECA penalty is checkpoint-sensitive, but epoch
+matching still does not yield a consistent positive Macro-F1 effect.
+
+Per-class effects remain heterogeneous. Class 2 remains difficult, and the
+six board folds share training boards. All U-Net estimates are therefore
+seed-42 architecture sensitivities rather than multi-seed confirmation.
+
+## Mechanistic interpretation
+
+The completed intervention audit does not support a universal statement that
+normalization simply absorbs ECA. In the U-Net GroupNorm model, replacing each
+sample-specific ECA gate by its calibration-set mean changes the output only
+slightly (relative L2 `0.000469`, output correlation `0.99865`), which is
+consistent with mostly stable channel scaling. BatchNorm retains more dynamic
+gate effects (fixed-mean relative L2 `0.006075`, correlation `0.9434`) but does
+not convert them into a stable downstream Macro-F1 gain.
+
+The original DnCNN float-equivalence finding remains valid for that audited
+configuration, but the absorption mechanism is architecture- and
+normalization-specific rather than universal.
 
 ## Architecture/output-contract audit
 
@@ -96,11 +117,12 @@ Recommended wording:
 > configuration is more robust than the light V4R configuration under the
 > original in-distribution stress protocol. In the locked leave-one-board-out
 > audit, however, denoising gains are heterogeneous and do not consistently
-> exceed a noise-adapted Raw baseline. A matched U-Net ablation shows a
-> consistent board-level Macro-F1 improvement with ECA, suggesting that channel
-> attention can reduce architecture-specific instability, while the NAFNet
-> negative control demonstrates that reconstruction-optimized whitening may
-> destroy downstream-discriminative ESPI structure.
+> exceed a noise-adapted Raw baseline. In an epoch-matched U-Net analysis, ECA
+> improves Macro-F1 consistently under GroupNorm but not under BatchNorm,
+> suggesting that its downstream utility depends on the surrounding
+> normalization regime. The NAFNet negative control further demonstrates that
+> reconstruction-optimized whitening may destroy downstream-discriminative ESPI
+> structure.
 
 ## Claims to avoid
 
@@ -108,5 +130,7 @@ Recommended wording:
 - Do not retain the old three-run p-value.
 - Do not claim that denoising universally beats Raw.
 - Do not claim that ECA always improves Accuracy.
+- Do not claim that ECA universally stabilizes U-Net across normalization regimes.
+- Do not generalize the DnCNN float-equivalence mechanism to every normalized residual network.
 - Do not treat the six boards as six independent conventional replicates.
 - Do not describe the seed-42 U-Net result as a five-seed robustness test.
