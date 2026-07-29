@@ -46,6 +46,10 @@ env/
 *.npy
 *.npz
 
+# Curated, lightweight revision tables are intentionally versioned.
+!results/revision_2026_corrected_robustness/*.csv
+!experiments/manifests/corrected_seed5_public_manifest.csv
+
 # Model checkpoints & weights
 *.pth
 *.pt

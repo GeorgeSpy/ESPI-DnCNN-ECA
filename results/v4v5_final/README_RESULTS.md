@@ -1,4 +1,11 @@
-# V4/V5 Final publication Results (Canonical Package)
+# V4/V5 historical publication results
+
+> **Revision notice (2026-07-28):** this directory is retained unchanged for
+> historical traceability. The earlier three-run robustness table must be
+> treated as a pilot diagnostic, not an independent multi-seed estimate,
+> because a protocol audit found incomplete seed propagation. It is superseded
+> for inferential purposes by
+> `../revision_2026_corrected_robustness/`.
 
 This directory contains the **canonical final result tables** used in the publication, primarily for Chapter 4 and Appendix Theta.
 
@@ -8,7 +15,8 @@ This directory contains the **canonical final result tables** used in the public
   Consolidated downstream 5-class classification results (ResNet-18) for Raw, pseudo-noisy, and real-aligned pipelines.
 
 - `robustness_3seed_summary.csv`  
-  Added-noise robustness evaluation at `sigma = 25` with 3 seeds, reported as mean +/- std using best-Macro-F1 epoch selection.
+  Historical three-run pilot at `sigma = 25`. Do not use this table for
+  independent-seed inference or retain its old p-value in a revised paper.
 
 - `latency_params_summary.csv`  
   Parameter-count and inference-latency summary for Base, V4 ECA, and V5 ECA.
@@ -24,8 +32,12 @@ This directory contains the **canonical final result tables** used in the public
 - Chapter 4.3: DnCNN / ECA / downstream impact
 - Appendix Theta: extended V4/V5 analysis, diagnostics, robustness, and cost
 
-## Canonical note
+## Interpretation boundary
 
-Only the files in this directory should be treated as the **final curated publication evidence**.
+These files document the original curated package. They are not the current
+canonical robustness evidence after the seed-propagation audit.
 
-Exploratory or legacy outputs from older evaluator tracks may exist elsewhere for historical traceability, but they should not override the package documented here.
+Use `results/revision_2026_corrected_robustness/` for the corrected five-seed
+replication and the locked board-grouped sensitivity analyses. Do not pool the
+random-split seed sweep and board-grouped folds; they estimate different
+quantities.

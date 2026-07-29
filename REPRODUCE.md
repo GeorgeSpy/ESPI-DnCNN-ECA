@@ -1,6 +1,8 @@
 # Reproducibility Guide
 
-This document describes how to work with the public scripts and the curated thesis result package in this repository. It is intentionally aligned with the current file layout and public entry points.
+This document describes how to work with the public scripts and curated result
+packages in this repository. The historical V4/V5 package and the corrected
+2026 revision package have different interpretation boundaries.
 
 ## 1. Environment setup
 
@@ -98,7 +100,7 @@ python espi_dncnn_lite_eca_FULL_PATCH_v4.py \
 
 The exact input directory structure remains project-specific and is not bundled in the public repository.
 
-## 7. Regenerate thesis figures from canonical CSVs
+## 7. Regenerate historical figures
 
 From the repository root:
 
@@ -108,9 +110,41 @@ python scripts/plot_robustness.py --input results/v4v5_final/plots_data_robustne
 python scripts/plot_latency.py --input results/v4v5_final/latency_params_summary.csv --out figures --with-params
 ```
 
-These commands reproduce the public result figures from the canonical V4/V5 package.
+These commands reproduce the historical V4/V5 figures. The robustness plot is
+based on the historical three-run pilot and must not be used as the current
+independent-seed robustness result.
 
-## 8. Experiment manifests
+## 8. Corrected seed-aware protocol
+
+The corrected revision uses seeds:
+
+```text
+42, 13, 37, 101, 202
+```
+
+Every native training/evaluation command must receive an explicit
+`--seed <SEED>` argument. A compliant runner must seed Python, NumPy, PyTorch
+CPU/CUDA, data splitting, additive noise, classifier training, and checkpoint
+selection. Native stderr must be logged but only a non-zero process exit code
+is considered failure.
+
+The public, machine-independent run matrix is recorded in:
+
+```text
+experiments/manifests/corrected_seed5_public_manifest.csv
+```
+
+The corresponding result tables are in:
+
+```text
+results/revision_2026_corrected_robustness/
+```
+
+The full downstream evaluator remains in the separate classification
+repository. Absolute Windows paths, datasets, checkpoints, and classifier
+weights are intentionally excluded from this public package.
+
+## 9. Experiment manifests
 
 A template manifest is provided at:
 
@@ -120,6 +154,13 @@ experiments/manifests/TEMPLATE_run_manifest.yaml
 
 Use it to record run provenance, training regime, evaluation settings, and output artifacts.
 
-## 9. Scope clarification
+## 10. Interpretation boundary
 
-This repository does **not** contain the full end-to-end thesis pipeline by itself. The pseudo-noisy generator and the downstream classification code are maintained in separate repositories. The public material here should therefore be interpreted as the **denoising component plus curated final V4/V5 result evidence**.
+This repository does **not** contain the full end-to-end pipeline by itself. The
+pseudo-noisy generator and downstream classification code are maintained in
+separate repositories.
+
+Do not pool the corrected random-split five-seed sweep with the locked
+board-grouped audit. The former estimates seed robustness under the original
+in-distribution protocol; the latter estimates transfer to unseen physical
+boards at seed 42.
