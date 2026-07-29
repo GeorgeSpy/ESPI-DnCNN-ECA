@@ -13,9 +13,9 @@ The completed experiments do not support the broad claim that denoising always
 improves ESPI classification. They support a narrower and more useful result:
 
 > Denoising can improve downstream classification when the denoiser preserves
-> class-discriminative ESPI structure. ECA appears to reduce instability in a
-> matched residual U-Net comparison, but its causal effect still requires a
-> multi-seed matched ablation for definitive confirmation.
+> class-discriminative ESPI structure. In the matched residual U-Net analysis,
+> ECA is beneficial under GroupNorm but not under BatchNorm, suggesting that its
+> downstream utility depends on the surrounding normalization regime.
 
 The corrected five-seed replication supersedes the earlier three-run robustness
 summary for inferential purposes. Under the corrected in-distribution stress
@@ -52,7 +52,7 @@ Three completed protocols estimate different quantities and must not be pooled:
 
 1. the five-seed random-split/in-distribution stress replication;
 2. the seed-42 locked six-board transfer audit;
-3. the seed-42 matched U-Net GN no-ECA versus ECA sensitivity analysis.
+3. the seed-42 matched U-Net ECA-by-normalization sensitivity analysis.
 
 ## 3. Corrected five-seed results
 
@@ -101,28 +101,52 @@ must not be described as six fully independent conventional replicates.
 
 ## 5. What the matched U-Net experiment says about ECA
 
-The matched U-Net experiment holds architecture family, GroupNorm, seed,
-training epoch, downstream protocol, and common-parameter initialization fixed.
-Only the ECA condition changes.
+The completed U-Net experiment holds architecture family, seed, training epoch,
+downstream protocol, and common-parameter initialization fixed within each
+normalization regime. It evaluates ECA at `enc0/enc1/enc2` under both GroupNorm
+and BatchNorm.
 
-| Endpoint | Mean ECA-minus-no-ECA change | 95% interval | Board wins | Cohen's dz | Exact sign-flip p |
-|---|---:|---:|---:|---:|---:|
-| Accuracy | +0.1585 | [-0.0601, 0.3772] | 4/6 | 0.76 | 0.21875 |
-| Macro-F1 | **+0.1429** | **[0.0350, 0.2508]** | **6/6** | **1.39** | **0.03125** |
+| Normalization | Endpoint | Mean ECA-minus-no-ECA change | 95% interval | Board wins | Cohen's dz | Exact sign-flip p |
+|---|---|---:|---:|---:|---:|---:|
+| GroupNorm | Accuracy | +0.1585 | [-0.0601, 0.3772] | 4/6 | 0.76 | 0.21875 |
+| GroupNorm | Macro-F1 | **+0.1429** | **[0.0350, 0.2508]** | **6/6** | **1.39** | **0.03125** |
+| BatchNorm | Accuracy | +0.0774 | [-0.1922, 0.3470] | 3/6 | 0.30 | 0.50000 |
+| BatchNorm | Macro-F1 | -0.0144 | [-0.1088, 0.0799] | 2/6 | -0.16 | 0.75000 |
 
-Macro-F1 improves on every board. Accuracy is less consistent. The largest
-Accuracy changes occur where no-ECA is unstable: C03 rises from 0.0441 to
-0.4733, and W01 rises from 0.4925 to 0.8862. The C03 result should therefore be
-described as stabilization of a collapsed baseline, not as proof of a typical
-43-point ECA gain.
+The GroupNorm Macro-F1 improvement remains consistent across all six boards.
+The BatchNorm result is qualitatively different: Macro-F1 improves only on W02
+and W03 and declines on C01, C02, C03, and W01. Its small negative mean and wide
+interval do not establish either benefit or harm.
 
-Per-class board-balanced F1 improves for classes 0, 1, 3, and 4. Class 2 remains
-near zero (`0.0109` without ECA, `0.0155` with ECA), so ECA does not solve the
-class-imbalance or class-separability problem.
+The matched Macro-F1 interaction, GroupNorm ECA effect minus BatchNorm ECA
+effect, is `+0.1573`, with interval `[-0.0003, 0.3150]`, five of six positive
+board-level interactions, Cohen's `dz = 1.05`, and exact sign-flip
+`p = 0.0625`. This is evidence that the ECA response is normalization-dependent,
+not confirmation of a universal interaction.
 
-This is the cleanest completed evidence that ECA itself matters, but it uses one
-training seed and overlapping board folds. It is supportive evidence, not a
-multi-seed causal confirmation.
+Checkpoint selection changes the magnitude of the BatchNorm estimate. The
+minimum-validation-loss ECA checkpoint at epoch 16 yields a mean Macro-F1
+effect of `-0.0732`; strict epoch matching at epoch 15 attenuates the estimate
+to `-0.0144`. The BN ranking is therefore checkpoint-sensitive, but epoch
+matching does not produce a consistent positive ECA effect.
+
+### 5.1 Mechanistic audit
+
+The intervention audit rejects a universal explanation that normalization
+simply absorbs ECA. In the GroupNorm U-Net, replacing sample-specific gates by
+their calibration-set mean yields relative output L2 `0.000469` and output
+correlation `0.99865`, suggesting mostly stable channel scaling. In the
+BatchNorm U-Net, the same intervention yields relative L2 `0.006075` and
+correlation `0.9434`: the gates remain more dynamic, yet do not provide a stable
+downstream Macro-F1 gain.
+
+The earlier DnCNN float-equivalence finding therefore remains a valid diagnostic
+for the audited DnCNN configuration, but it is not a universal mechanism for
+all normalized residual denoisers.
+
+All U-Net results use one training seed and overlapping board folds. They are
+architecture-sensitivity and effect-size evidence, not multi-seed causal
+confirmation.
 
 ## 6. Architecture and output-contract findings
 
@@ -152,8 +176,8 @@ The evidence supports the following statements:
    robust than V4R light ECA under the original in-distribution stress protocol.
 2. Denoising does not consistently outperform a noise-adapted Raw baseline on
    unseen physical boards.
-3. A matched U-Net ablation suggests that ECA can reduce architecture-specific
-   instability, particularly for Macro-F1.
+3. A matched U-Net ablation suggests that the downstream response to ECA depends
+   on normalization: it is favorable under GroupNorm but not under BatchNorm.
 4. Reconstruction-oriented whitening can remove downstream-discriminative ESPI
    structure; model selection must include downstream evaluation.
 5. Generalization varies by board and material, with W02 and C03 serving as
@@ -165,6 +189,9 @@ The evidence supports the following statements:
 - Do not reuse the historical three-run p-value.
 - Do not claim that denoising universally improves classification.
 - Do not claim that ECA always improves Accuracy.
+- Do not claim that ECA universally stabilizes U-Net.
+- Do not generalize the DnCNN float-equivalence/absorption mechanism to every
+  normalized residual architecture.
 - Do not interpret V5R versus V4R as a pure presence/absence ECA ablation;
   both models use ECA and differ in attention density/configuration.
 - Do not describe the U-Net seed-42 result as a five-seed ECA confirmation.
@@ -178,11 +205,11 @@ The evidence supports the following statements:
 > five paired seeds, with mean differences of 0.0175 in Accuracy and 0.0319 in
 > Macro-F1. The advantage over Raw was smaller and uncertain. In a locked
 > six-board transfer audit, denoising gains were heterogeneous and Raw achieved
-> the highest board-balanced Macro-F1. A matched seed-42 U-Net GroupNorm
-> ablation improved Macro-F1 on all six boards when ECA was enabled, suggesting
-> that channel attention can reduce architecture-specific instability. These
-> findings support conditional downstream utility rather than a universal
-> denoising advantage.
+> the highest board-balanced Macro-F1. In a matched seed-42 U-Net analysis, ECA
+> improved Macro-F1 on all six boards under GroupNorm but not under BatchNorm,
+> yielding a positive GroupNorm-minus-BatchNorm interaction estimate. These
+> findings suggest that ECA utility depends on normalization and support
+> conditional downstream utility rather than a universal denoising advantage.
 
 ## 10. Reproducibility and public artifacts
 
@@ -193,6 +220,7 @@ The public revision package contains:
 - paired model contrasts and exact sign-flip diagnostics;
 - per-board and grouped six-board tables;
 - matched U-Net ECA/no-ECA effects and per-class summaries;
+- matched BatchNorm ECA/no-ECA effects and the ECA-by-normalization interaction;
 - the C01 output-contract audit;
 - a machine-readable public manifest;
 - `scripts/validate_revision_results.py` for internal table consistency.
@@ -207,8 +235,8 @@ Sections 7 and 9. No additional architecture search is required before
 publishing those claims.
 
 A further experiment is required only if the paper must make a stronger causal
-claim about ECA. The highest-value next experiment is a matched DnCNN GroupNorm
-ablation, not another unrelated modern denoiser:
+claim about ECA. The highest-value next experiment remains a matched DnCNN
+GroupNorm ablation, not another unrelated modern denoiser:
 
 - arms: no ECA, light ECA `[0,1,2]`, aggressive ECA
   `[0,1,2,3,6,10,14]`;

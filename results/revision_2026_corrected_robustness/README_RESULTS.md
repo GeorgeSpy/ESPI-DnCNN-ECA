@@ -27,9 +27,9 @@ included.
 - Board folds overlap in their training boards, so board-level intervals and
   sign-flip tests are exploratory effect-size diagnostics.
 
-### Matched U-Net ECA sensitivity
+### Matched U-Net ECA-by-normalization sensitivity
 
-- Residual U-Net-Lite with GroupNorm.
+- Residual U-Net-Lite with GroupNorm and BatchNorm arms.
 - Same seed, epoch 15, classifier protocol, and common-parameter
   initialization.
 - Comparison: no ECA versus ECA at encoder stages `enc0/enc1/enc2`.
@@ -48,10 +48,13 @@ In the locked six-board audit, Raw, V4R, and V5R have nearly tied mean Accuracy,
 while Raw has the highest board-balanced Macro-F1. This does not support a
 universal denoising advantage on unseen physical boards.
 
-The matched U-Net ablation improves Macro-F1 on all six boards. The mean paired
-ECA-minus-no-ECA effect is `+0.1429` (exploratory 95% CI
-`[0.0350, 0.2508]`). Accuracy improves on four of six boards and is therefore a
-less consistent endpoint.
+Under GroupNorm, the matched U-Net ablation improves Macro-F1 on all six boards.
+The mean paired ECA-minus-no-ECA effect is `+0.1429` (exploratory 95% CI
+`[0.0350, 0.2508]`). Under BatchNorm, the matched Macro-F1 effect is `-0.0144`
+(`2/6` wins; CI `[-0.1088, 0.0799]`). The GN-minus-BN interaction estimate is
+`+0.1573` (`5/6` positive board-level interactions; exact sign-flip
+`p = 0.0625`). The result suggests normalization-dependent ECA utility and must
+not be presented as a universal U-Net benefit.
 
 The NAFNet-Tiny native-SCA negative control reaches only `0.0901` Accuracy and
 `0.0778` Macro-F1 on C01. An output-contract audit shows near-white outputs and
@@ -69,6 +72,12 @@ inferior.
 - `unet_matched_epoch15_paired_board_effects.csv`: per-board U-Net ECA effects.
 - `unet_matched_epoch15_paired_summary.csv`: aggregate paired effects.
 - `unet_matched_epoch15_per_class_summary.csv`: board-balanced per-class F1.
+- `unet_bn_matched_epoch15_paired_board_effects.csv`: strict epoch-15 BN
+  no-ECA/ECA board effects.
+- `unet_bn_matched_epoch15_paired_summary.csv`: aggregate strict BN paired
+  effects.
+- `unet_eca_normalization_matched_epoch15_summary.csv`: matched BN, GN, and
+  GN-minus-BN interaction effects.
 - `output_contract_audit_c01.csv`: matched signal-preservation diagnostics.
 
 See `../../docs/REVISION_RESULTS_2026.md` for the consolidated interpretation

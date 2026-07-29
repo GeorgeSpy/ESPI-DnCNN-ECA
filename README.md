@@ -17,12 +17,14 @@ The current revision evidence is in
 - corrected seed-aware five-seed retraining/evaluation with seeds
   `42, 13, 37, 101, 202`;
 - a locked six-board grouped transfer audit;
-- a matched U-Net GroupNorm no-ECA/ECA sensitivity analysis;
+- a matched U-Net ECA-by-normalization sensitivity analysis;
 - an output-contract audit including a NAFNet-Tiny failure-mode control.
 
 The consolidated interpretation, claim boundaries, and completion decision are
 documented in
 [`docs/FINAL_REVISION_REPORT_2026.md`](docs/FINAL_REVISION_REPORT_2026.md).
+Paste-ready English manuscript and reviewer-response text is provided in
+[`docs/PAPER_REVISION_INSERTS_2026.md`](docs/PAPER_REVISION_INSERTS_2026.md).
 
 The historical package in [`results/v4v5_final/`](results/v4v5_final/) remains
 available for traceability but is no longer the canonical robustness evidence.
@@ -85,21 +87,32 @@ several wood boards, whereas Raw is stronger on the carbon subset. This audit
 must not be pooled with the random-split five-seed result because the protocols
 estimate different quantities.
 
-## Matched U-Net ECA sensitivity
+## Matched U-Net ECA-by-normalization sensitivity
 
-A residual U-Net-Lite with GroupNorm was evaluated at the same epoch, seed,
-classifier protocol, and common-parameter initialization.
+A residual U-Net-Lite was evaluated with and without ECA under GroupNorm and
+BatchNorm. Within each normalization regime, both denoisers use seed 42, epoch
+15, the same classifier protocol, and matched common-parameter initialization.
 
 | U-Net variant | Board-balanced Accuracy | Board-balanced Macro-F1 |
 |---|---:|---:|
 | GN no ECA | 0.5940 | 0.1833 |
 | GN ECA at enc0/enc1/enc2 | **0.7525** | **0.3262** |
+| BN no ECA | 0.5348 | **0.2650** |
+| BN ECA at enc0/enc1/enc2 | **0.6122** | 0.2506 |
 
-Macro-F1 improves on all six boards, with a mean paired effect of `+0.1429`
-(exploratory 95% interval `[0.0350, 0.2508]`). Accuracy improves on four of six
-boards. The result suggests that ECA can reduce architecture-specific
-instability, but it is currently a seed-42 architecture sensitivity rather than
-a five-seed U-Net confirmation.
+Under GroupNorm, ECA improves Macro-F1 on all six boards, with a mean paired
+effect of `+0.1429` (exploratory 95% interval `[0.0350, 0.2508]`). Under
+BatchNorm, the matched effect is `-0.0144` (`2/6` wins; interval
+`[-0.1088, 0.0799]`). The matched GN-minus-BN interaction estimate is
+`+0.1573` Macro-F1 (`5/6` positive board-level interactions; exact sign-flip
+`p = 0.0625`). This suggests that ECA utility is normalization-dependent; it
+does not establish a universal U-Net benefit.
+
+The mechanistic audit also rejects a universal "normalization absorbs ECA"
+explanation. In this U-Net, GroupNorm mostly converts ECA into stable channel
+scaling, whereas BatchNorm permits more dynamic perturbations without a stable
+downstream gain. The earlier float-equivalence finding should therefore remain
+specific to the audited DnCNN configuration.
 
 ## Reconstruction is not downstream utility
 
@@ -126,6 +139,7 @@ The supported conclusion is therefore conditional:
 |   |-- REPOSITORY_SCOPE.md
 |   |-- PUBLICATION_RESULTS_NOTES.md
 |   |-- FINAL_REVISION_REPORT_2026.md
+|   |-- PAPER_REVISION_INSERTS_2026.md
 |   `-- REVISION_RESULTS_2026.md
 |-- experiments/
 |   `-- manifests/
