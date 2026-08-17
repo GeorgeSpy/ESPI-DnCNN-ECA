@@ -1,0 +1,8 @@
+question,status,public_interpretation
+H1_pixel_repeat_variability,SUPPORTED,Nominal repeats exhibit measurable pixel-domain variability without causal attribution
+H2_candidate_descriptor_repeatability_discriminability,SUPPORTED,At least one predeclared candidate descriptor separates within-condition repeatability from broad between-condition variation
+H3_systematic_aggregate_target_structural_excess,NOT_SUPPORTED,Available C01 evidence does not show systematic aggregate-target displacement beyond the empirical repeat reference
+Gate_1A,GATE_1A_NO_GO,The tested target-ambiguity framing is not supported as a central finding
+H4_repeat_level_physical_observable,H4_WEAK_PROXY_ONLY,No independent calibrated repeat-level observable with exact image mapping was found
+pixel_overlay_readback_addendum,READBACK_EXTRACTION_NOT_VALIDATED,The addendum did not upgrade H4
+

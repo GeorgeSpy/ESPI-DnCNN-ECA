@@ -1,5 +1,10 @@
 # 2026 corrected robustness and downstream revision
 
+> **Scope notice:** this document remains authoritative for the corrected
+> seed-robustness and July architecture-sensitivity protocols. Current
+> downstream endpoint claims additionally require
+> `ENDPOINT_VALIDITY_UPDATE_2026.md` and `CURRENT_CLAIM_BOUNDARIES_2026.md`.
+
 ## Why this revision exists
 
 The earlier robustness workflow was audited after reviewer concern about the

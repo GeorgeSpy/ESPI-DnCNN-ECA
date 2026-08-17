@@ -1,0 +1,6 @@
+arm,objective,committed_updates_at_final_incident,frozen_outcome,scientific_boundary
+A0-N0-SET-C-tau-0.02,SET-C,92,UNSTABLE_UNDER_FROZEN_TRAINING_CONTRACT,Protocol outcome only; not universal SET-C infeasibility
+A0-N0-SET-C-tau-0.05,SET-C,79,UNSTABLE_UNDER_FROZEN_TRAINING_CONTRACT,Protocol outcome only; not universal SET-C infeasibility
+A0-N0-SET-D-tau-0.05,SET-D,72,FAILED_SAFETY_GATE_UNDER_FROZEN_TRAINING_CONTRACT,Protocol outcome only; not proof that SET-D cannot train
+A0-P0,legacy_proxy,0,NOT_AUTHORIZED_MISSING_UNIQUE_SCALAR_AUTHORITY,No baseline run was executed
+

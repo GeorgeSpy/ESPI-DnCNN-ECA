@@ -1,5 +1,11 @@
 # Paper revision inserts: reviewer-facing English text
 
+> **Do not paste without revision:** this July text predates the nested
+> frequency-conditional endpoint. Use
+> [`ENDPOINT_VALIDITY_UPDATE_2026.md`](ENDPOINT_VALIDITY_UPDATE_2026.md) and
+> [`CURRENT_CLAIM_BOUNDARIES_2026.md`](CURRENT_CLAIM_BOUNDARIES_2026.md) as the
+> authoritative downstream claim boundary.
+
 This document provides paste-ready text for the SETN revision and a longer
 follow-up paper. The wording follows the corrected seed audit, the locked
 six-board transfer experiment, the matched U-Net ECA-by-normalization study,

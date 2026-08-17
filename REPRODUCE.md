@@ -1,8 +1,9 @@
 # Reproducibility Guide
 
 This document describes how to work with the public scripts and curated result
-packages in this repository. The historical V4/V5 package and the corrected
-2026 revision package have different interpretation boundaries.
+packages in this repository. The historical V4/V5 package, the corrected
+robustness package, and the August 2026 endpoint-validity package have different
+interpretation boundaries.
 
 ## 1. Environment setup
 
@@ -144,7 +145,30 @@ The full downstream evaluator remains in the separate classification
 repository. Absolute Windows paths, datasets, checkpoints, and classifier
 weights are intentionally excluded from this public package.
 
-## 9. Experiment manifests
+## 9. Validate the endpoint-validity package
+
+The current downstream endpoint tables can be verified without the private
+dataset or model checkpoints:
+
+```bash
+python scripts/validate_endpoint_validity_results.py
+```
+
+The validator checks:
+
+- the 11,706-repeat endpoint closure;
+- five-class support on all six boards;
+- deterministic Raw/V4R/V5R view-lock summaries;
+- the frozen F-only and F+I headline metrics;
+- all 90 board/seed incremental deltas;
+- all 90 leakage-audit rows;
+- board-first and condition-balanced paired contrasts;
+- the SHA-256 public artifact manifest.
+
+The full sample-level tensors, logits, data manifests, checkpoints, and private
+paths are intentionally not distributed in this repository.
+
+## 10. Experiment manifests
 
 A template manifest is provided at:
 
@@ -154,7 +178,7 @@ experiments/manifests/TEMPLATE_run_manifest.yaml
 
 Use it to record run provenance, training regime, evaluation settings, and output artifacts.
 
-## 10. Interpretation boundary
+## 11. Interpretation boundary
 
 This repository does **not** contain the full end-to-end pipeline by itself. The
 pseudo-noisy generator and downstream classification code are maintained in
@@ -164,3 +188,9 @@ Do not pool the corrected random-split five-seed sweep with the locked
 board-grouped audit. The former estimates seed robustness under the original
 in-distribution protocol; the latter estimates transfer to unseen physical
 boards at seed 42.
+
+The current nested endpoint adds a third estimand: image information conditional
+on a matched frequency-only model. Its frozen absolute result is inconclusive,
+while the later paired descriptive audit finds a consistent Raw advantage over
+the denoised views. See `docs/CURRENT_CLAIM_BOUNDARIES_2026.md` before using any
+of these results in a manuscript.

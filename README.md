@@ -4,14 +4,51 @@ This repository contains the public DnCNN-Lite/ECA denoising code used in the
 ESPI study, together with curated result tables for reconstruction-aware and
 downstream classification analysis.
 
-## 2026 reproducibility correction
+## Current evidence: endpoint-validity update (August 2026)
+
+The current public interpretation is defined by the six-board, nested
+incremental-value analysis in
+[`results/endpoint_validity_2026/`](results/endpoint_validity_2026/) and the
+corresponding report in
+[`docs/ENDPOINT_VALIDITY_UPDATE_2026.md`](docs/ENDPOINT_VALIDITY_UPDATE_2026.md).
+
+The frozen endpoint contains 11,706 unique real physical repeats from six
+boards and five classes. Raw, V4R, and V5R classifier-input views were locked
+one-to-one with 100% coverage and bitwise deterministic reproduction. All 90
+outer prediction tables and 90 inner out-of-fold tables passed the leakage and
+coverage audit.
+
+| Arm | Board-balanced Macro-F1 | Increment over matched F-only | Positive boards |
+|---|---:|---:|---:|
+| F-only | 0.816656 | -- | -- |
+| Raw F+I | **0.850356** | **+0.033699** | 4/6 |
+| V4R F+I | 0.800619 | -0.016037 | 2/6 |
+| V5R F+I | 0.774716 | -0.041940 | 1/6 |
+
+The preregistered absolute decision is
+`DNCNN_INCREMENTAL_VALUE_INCONCLUSIVE`: Raw clears the mean-effect threshold
+but not the required 5/6-board consistency rule. A subsequent board-first
+paired audit, using no new fitting or inference, found Raw minus V4R =
+`+0.049737` Macro-F1 (6/6 boards) and Raw minus V5R = `+0.075639` (5/6 boards).
+Its frozen descriptive decision is `RAW_CONDITIONAL_ADVANTAGE_CONSISTENT`.
+
+The supported conclusion is therefore cautionary: under this endpoint, Raw
+retains more conditional task-relevant image information beyond excitation
+frequency than either denoised view. The analysis does not establish that this
+residual information is fringe morphology, displacement information, or any
+specific physical observable.
+
+Current claim boundaries are collected in
+[`docs/CURRENT_CLAIM_BOUNDARIES_2026.md`](docs/CURRENT_CLAIM_BOUNDARIES_2026.md).
+
+## Earlier 2026 reproducibility correction
 
 The previous three-run robustness result is retained only as a historical pilot.
 A protocol audit found incomplete seed propagation, so it must not be treated as
 an independent three-seed estimate and its old p-value must not be used in a
 revised paper.
 
-The current revision evidence is in
+The earlier corrected robustness evidence is in
 [`results/revision_2026_corrected_robustness/`](results/revision_2026_corrected_robustness/):
 
 - corrected seed-aware five-seed retraining/evaluation with seeds
@@ -20,11 +57,13 @@ The current revision evidence is in
 - a matched U-Net ECA-by-normalization sensitivity analysis;
 - an output-contract audit including a NAFNet-Tiny failure-mode control.
 
-The consolidated interpretation, claim boundaries, and completion decision are
+Its original consolidated interpretation and reviewer-facing text are
 documented in
 [`docs/FINAL_REVISION_REPORT_2026.md`](docs/FINAL_REVISION_REPORT_2026.md).
 Paste-ready English manuscript and reviewer-response text is provided in
 [`docs/PAPER_REVISION_INSERTS_2026.md`](docs/PAPER_REVISION_INSERTS_2026.md).
+Those documents are retained for audit history and are superseded wherever
+they conflict with the August endpoint-validity update.
 
 The historical package in [`results/v4v5_final/`](results/v4v5_final/) remains
 available for traceability but is no longer the canonical robustness evidence.
@@ -39,6 +78,11 @@ The complete research workflow spans three components:
 
 Raw datasets, checkpoints, classifier weights, and machine-specific experiment
 outputs are intentionally not included.
+
+Sample-level logits and the 35,118 locked Raw/V4R/V5R tensors are likewise not
+published here. The public package contains the aggregate, board, seed, class,
+condition-sensitivity, leakage, and provenance tables needed to inspect the
+reported decisions.
 
 ## Public model entry points
 
@@ -121,12 +165,14 @@ of the original ESPI input than the tested U-Net and NAFNet configurations.
 NAFNet-Tiny native SCA fits nearly white averaged proxy targets but collapses on
 C01 downstream evaluation (`0.0901` Accuracy, `0.0778` Macro-F1).
 
-The supported conclusion is therefore conditional:
+The earlier output-contract audit motivated the conditional statement below,
+but the August endpoint-validity study now supplies the stronger operational
+boundary:
 
-> Denoising can improve downstream classification when it preserves
-> class-discriminative ESPI structure. ECA may stabilize a residual architecture,
-> but reconstruction quality or architecture modernity alone does not guarantee
-> downstream benefit.
+> Reconstruction quality, architecture modernity, and in-distribution
+> classification scores do not by themselves establish conditional utility on
+> unseen boards. In the frozen nested endpoint, Raw retains more conditional
+> predictive information than V4R or V5R.
 
 ## Repository layout
 
@@ -138,6 +184,9 @@ The supported conclusion is therefore conditional:
 |-- docs/
 |   |-- REPOSITORY_SCOPE.md
 |   |-- PUBLICATION_RESULTS_NOTES.md
+|   |-- ENDPOINT_VALIDITY_UPDATE_2026.md
+|   |-- CURRENT_CLAIM_BOUNDARIES_2026.md
+|   |-- PROTOCOL_V2_AUDIT_STATUS_2026.md
 |   |-- FINAL_REVISION_REPORT_2026.md
 |   |-- PAPER_REVISION_INSERTS_2026.md
 |   `-- REVISION_RESULTS_2026.md
@@ -147,8 +196,11 @@ The supported conclusion is therefore conditional:
 |       `-- corrected_seed5_public_manifest.csv
 |-- results/
 |   |-- v4v5_final/                         # historical package
-|   `-- revision_2026_corrected_robustness/ # current revision evidence
+|   |-- revision_2026_corrected_robustness/ # earlier corrected evidence
+|   |-- endpoint_validity_2026/             # current downstream evidence
+|   `-- protocol_audit_2026/                # compact protocol decision registry
 |-- scripts/
+|   |-- validate_endpoint_validity_results.py
 |-- espi_dncnn_lite_eca.py
 |-- espi_dncnn_lite_eca_FULL_PATCH_v4.py
 `-- espi_dncnn_lite_eca_FULL_PATCH_v5.py
