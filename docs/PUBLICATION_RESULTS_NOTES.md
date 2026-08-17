@@ -2,6 +2,24 @@
 
 This note maps repository result files to publication tables and figures.
 
+## Current endpoint-validity evidence
+
+- `results/endpoint_validity_2026/board_balanced_summary.csv`
+  - matched frequency-only, image-only, and frequency-plus-image summaries;
+- `results/endpoint_validity_2026/incremental_deltas.csv`
+  - all board/seed conditional Macro-F1 deltas;
+- `results/endpoint_validity_2026/paired_board_contrasts.csv`
+  - board-first Raw/V4R/V5R contrasts;
+- `results/endpoint_validity_2026/per_class_paired_contrasts.csv`
+  - descriptive localization by endpoint class;
+- `results/endpoint_validity_2026/leakage_audit.csv`
+  - inner-OOF coverage and held-out-board exclusion checks.
+
+These files and `docs/ENDPOINT_VALIDITY_UPDATE_2026.md` define the current
+downstream evidence. The absolute decision remains
+`DNCNN_INCREMENTAL_VALUE_INCONCLUSIVE`; the later paired descriptive result is
+`RAW_CONDITIONAL_ADVANTAGE_CONSISTENT`.
+
 ## Chapter 4 (DnCNN / ECA / downstream)
 
 - `results/v4v5_final/downstream_summary.csv`
@@ -25,7 +43,11 @@ This note maps repository result files to publication tables and figures.
 
 ## Interpretation note for publication alignment
 
-The V4/V5 findings belong to the **mature 5-class downstream phase** of the publication and should not be interpreted as a direct numerical continuation of the earlier Chapter 4 ablation stage. They reflect the later curated evaluation package used for the final publication interpretation.
+The V4/V5 findings belong to the **mature 5-class downstream phase** of the
+publication and should not be interpreted as a direct numerical continuation
+of the earlier Chapter 4 ablation stage. The historical tables remain valid for
+their original protocols, but the August nested endpoint is required for claims
+about image value conditional on excitation frequency.
 
 ## Appendix Theta
 

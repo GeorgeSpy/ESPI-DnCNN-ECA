@@ -1,0 +1,15 @@
+protocol_stage,decision,key_result
+protocol_v2_1_provenance,PASS,"9/9 mappings; 96/96 checks; 1382 K>=9 conditions; 23557 real frames"
+protocol_v2_2_qc_freeze,PASS,"R0 identity only; carbon and wood morphology diagnostic-only"
+protocol_v2_3_blinded_projection,PASS,"0 technical exclusions among 18695 confirmatory frames"
+protocol_v2_4_reference_builder,PASS,"deterministic 1 input + 4 reconstruction + 4 structural roles"
+protocol_v2_5_3_loss_diagnostics,PASS,"SET-C primary and SET-D backup numerical interfaces accepted"
+protocol_v2_6_architecture_design,PASS,"NAFNet-ESPI-B0 and untrained RSG-NAFNet interface contracts"
+protocol_v2_8_5_set_c_training,FAIL,"both tau arms stopped on early output-coherence events; no tau selected"
+protocol_v2_9_2_set_d_safety,FAIL,"72 committed updates before confirmed event; full run unauthorized"
+protocol_v2_10_1_1_p0_authority,PASS_WITH_INCOMPLETE_EVIDENCE,"legacy P0 scalar not uniquely recoverable; no run authorized"
+gate_1a_target_validity,GATE_1A_NO_GO,"H1 and H2 supported; H3 not supported"
+h4_observable_provenance,H4_WEAK_PROXY_ONLY,"no calibrated repeat-level physical readback"
+dncnn_endpoint_stage_b,DNCNN_INCREMENTAL_VALUE_INCONCLUSIVE,"Raw +0.033699 (4/6); V4R -0.016037 (2/6); V5R -0.041940 (1/6)"
+dncnn_paired_contrast,RAW_CONDITIONAL_ADVANTAGE_CONSISTENT,"Raw-V4R +0.049737 (6/6); Raw-V5R +0.075639 (5/6)"
+

@@ -1,0 +1,3 @@
+# Keep hash-locked public evidence byte-stable across operating systems.
+results/endpoint_validity_2026/*.csv -text
+results/endpoint_validity_2026/README_RESULTS.md -text

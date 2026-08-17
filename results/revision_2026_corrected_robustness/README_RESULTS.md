@@ -1,9 +1,10 @@
 # Corrected robustness and architecture-sensitivity results (2026 revision)
 
 This package supersedes the historical three-run robustness summary for
-inferential purposes. It contains lightweight, publication-ready tables only;
-datasets, checkpoints, classifier weights, and machine-specific paths are not
-included.
+inferential purposes only. It does not supersede the later nested
+frequency-conditional endpoint in `results/endpoint_validity_2026/`. It
+contains lightweight, publication-ready tables only; datasets, checkpoints,
+classifier weights, and machine-specific paths are not included.
 
 ## Protocols kept separate
 

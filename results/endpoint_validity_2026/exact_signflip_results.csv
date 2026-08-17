@@ -1,0 +1,4 @@
+contrast,boards,observed_absolute_mean,enumerated_assignments,extreme_or_equal_assignments,exact_two_sided_p,positive_boards,interpretation
+Raw_minus_V4R,6,0.049736681361,64,2,0.031250000000,6,small_n_descriptive_randomization
+Raw_minus_V5R,6,0.075639373153,64,4,0.062500000000,5,small_n_descriptive_randomization
+V4R_minus_V5R,6,0.025902691792,64,20,0.312500000000,4,small_n_descriptive_randomization

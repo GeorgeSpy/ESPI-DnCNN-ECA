@@ -1,0 +1,6 @@
+split,board_role,frames,conditions,components
+development,C01,4862,232,232
+train,multi_board,15101,928,928
+validation,multi_board,1970,122,122
+test,multi_board,1624,100,100
+

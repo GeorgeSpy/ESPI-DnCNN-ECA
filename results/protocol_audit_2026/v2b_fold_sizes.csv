@@ -1,0 +1,7 @@
+held_out_board,train_frames,train_conditions,validation_board,validation_frames,validation_conditions,test_frames,test_conditions,development_board,development_frames,development_conditions
+C02,10833,683,C03,3272,222,4590,245,C01,4862,232
+C03,10833,683,C02,4590,245,3272,222,C01,4862,232
+W01,10791,658,W02,4013,253,3891,239,C01,4862,232
+W02,11753,706,W03,2929,191,4013,253,C01,4862,232
+W03,11875,720,W01,3891,239,2929,191,C01,4862,232
+

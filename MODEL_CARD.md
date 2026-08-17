@@ -4,6 +4,11 @@
 > incomplete seed propagation. Use
 > `results/revision_2026_corrected_robustness/` for current robustness claims.
 
+> **August 2026 endpoint update:** use `results/endpoint_validity_2026/` for
+> downstream claims. The frozen absolute result is
+> `DNCNN_INCREMENTAL_VALUE_INCONCLUSIVE`; a board-first paired audit finds a
+> consistent Raw conditional advantage over V4R and V5R.
+
 ## Overview
 
 This repository contains lightweight DnCNN-style denoisers for ESPI imagery, with emphasis on Efficient Channel Attention (ECA) ablations and final thesis-era V4/V5 comparisons.
@@ -31,6 +36,8 @@ The corrected evidence supports the following high-level conclusions:
   over **V4R light ECA**.
 - The six-board transfer audit does not show a universal denoising advantage over
   a noise-adapted Raw baseline.
+- In the nested frequency-conditional endpoint, Raw exceeds V4R on 6/6 boards
+  and V5R on 5/6 boards in the paired descriptive audit.
 - A matched U-Net GroupNorm ablation suggests that ECA reduces board-specific
   instability and improves Macro-F1, but the current U-Net result uses seed 42.
 - NAFNet-Tiny with the audited proxy-target contract is a negative control for
@@ -83,7 +90,13 @@ The main limitations are the following:
 - the U-Net matched ablation is not yet a multi-seed denoiser-training estimate,
 - class 2 remains difficult under the grouped protocol,
 - the final conclusions rely on multiple protocols and must not pool their
-  statistical units.
+  statistical units,
+- excitation frequency strongly predicts the five-class endpoint,
+- the residual Raw advantage has not been identified as fringe morphology or a
+  calibrated physical observable,
+- the private corpus, sample-level logits, locked tensors, and checkpoints are
+  not part of the public release.
+
 
 ## Scientific notes
 

@@ -1,10 +1,19 @@
 # Final revision report: corrected robustness, ECA sensitivity, and downstream utility
 
+> **Superseded interpretation notice (August 2026):** this report is retained
+> as the audit record for the corrected robustness and architecture-sensitivity
+> revision. Downstream claims must now also follow
+> [`ENDPOINT_VALIDITY_UPDATE_2026.md`](ENDPOINT_VALIDITY_UPDATE_2026.md) and
+> [`CURRENT_CLAIM_BOUNDARIES_2026.md`](CURRENT_CLAIM_BOUNDARIES_2026.md). Its
+> former "complete for publication" status does not supersede the later nested
+> endpoint evidence.
+
 **Project:** ESPI-DnCNN-ECA
 
 **Revision package:** 2026 corrected robustness and architecture-sensitivity audit
 
-**Status:** Complete for publication with the claim boundaries stated below
+**Historical status:** Complete under the July revision boundary; superseded for
+current downstream interpretation by the August endpoint-validity update
 **Canonical public evidence:** `results/revision_2026_corrected_robustness/`
 
 ## 1. Executive conclusion

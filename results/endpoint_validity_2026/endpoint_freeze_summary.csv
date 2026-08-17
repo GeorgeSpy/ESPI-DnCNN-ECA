@@ -1,0 +1,14 @@
+field,value,status
+candidate_physical_repeats,11706,PASS
+primary_physical_repeats,11706,PASS
+boards,6,PASS
+classes,5,PASS
+cross_project_label_differences,71,AUDITED
+dncnn_label_corrections,0,PASS
+unresolved_labels,0,PASS
+cross_project_protocol_valid_differences,71,PASS
+historical_prediction_record_alignment,1.0,PASS
+class_order,"1_1H|1_1T|1_2|2_1|higher",FROZEN
+outer_folds,"C01|C02|C03|W01|W02|W03",FROZEN
+observation_unit,REAL_PHYSICAL_REPEAT,FROZEN
+
