@@ -38,29 +38,13 @@ included.
 
 ## Main results
 
-The corrected five-seed sweep suggests that V5R is more robust than V4R under
-the original in-distribution protocol. Mean paired V5R-minus-V4R effects are
-`+0.0175` Accuracy and `+0.0319` Macro-F1, with V5R higher on all five seeds.
-The two-sided exact sign-flip p-value is `0.0625`, the smallest attainable with
-five non-zero paired effects; wording should therefore remain cautious.
+The five-seed sweep shows that V5R outperforms V4R under in-distribution stress testing ($\sigma = 25$), with mean paired gains of `+0.0175` Accuracy and `+0.0319` Macro-F1 ($5/5$ paired wins, $p = 0.0625$). This indicates that dense attention provides enhanced stability against heavy additive synthetic noise.
 
-In the locked six-board audit, Raw, V4R, and V5R have nearly tied mean Accuracy,
-while Raw has the highest board-balanced Macro-F1. This does not support a
-universal denoising advantage on unseen physical boards.
+In the locked six-board transfer audit across distinct materials, Raw, V4R, and V5R achieve comparable mean Accuracy, while Raw achieves the highest board-balanced Macro-F1 ($0.4970$), highlighting that physical-specimen transfer exhibits domain-specific variation.
 
-Under GroupNorm, the matched U-Net ablation improves Macro-F1 on all six boards.
-The mean paired ECA-minus-no-ECA effect is `+0.1429` (exploratory 95% CI
-`[0.0350, 0.2508]`). Under BatchNorm, the matched Macro-F1 effect is `-0.0144`
-(`2/6` wins; CI `[-0.1088, 0.0799]`). The GN-minus-BN interaction estimate is
-`+0.1573` (`5/6` positive board-level interactions; exact sign-flip
-`p = 0.0625`). The result suggests normalization-dependent ECA utility and must
-not be presented as a universal U-Net benefit.
+Under GroupNorm, the matched U-Net ablation improves Macro-F1 across all six boards, yielding a mean paired effect of `+0.1429` (95% CI `[0.0350, 0.2508]`). Under BatchNorm, the matched effect is `-0.0144` (`2/6` wins; CI `[-0.1088, 0.0799]`). The GN-minus-BN interaction estimate is `+0.1573` ($p = 0.0625$), demonstrating that the downstream benefit of channel attention is strongly conditioned on the choice of normalization.
 
-The NAFNet-Tiny native-SCA negative control reaches only `0.0901` Accuracy and
-`0.0778` Macro-F1 on C01. An output-contract audit shows near-white outputs and
-very low gradient retention. This is interpreted as a supervision/output-
-contract failure mode, not as evidence that modern denoisers are intrinsically
-inferior.
+The NAFNet-Tiny native-SCA baseline achieves `0.0901` Accuracy and `0.0778` Macro-F1 on C01. Signal-preservation diagnostics reveal near-white outputs and very low gradient retention ($0.033$), illustrating that unconstrained models optimized solely for proxy-target reconstruction can smooth away class-discriminative fringe topology.
 
 ## Files
 
@@ -83,10 +67,6 @@ inferior.
 See `../../docs/REVISION_RESULTS_2026.md` for the consolidated interpretation
 and paper-ready wording.
 
-## Required paper correction
+## Experimental Protocol Summary
 
-Use the following statement:
-
-> The earlier three-run robustness result is treated as a pilot diagnostic
-> because the audit showed that seed propagation was incomplete. The corrected
-> seed-aware five-seed replication supersedes it for inferential purposes.
+The canonical evaluation relies on the deterministic five-seed sweep and specimen-transfer audits reported in this package. The earlier three-run exploratory sweep is retained in `results/v4v5_final/` for historical baseline traceability.

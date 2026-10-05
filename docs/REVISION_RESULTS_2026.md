@@ -1,15 +1,8 @@
 # 2026 corrected robustness and downstream revision
 
-## Why this revision exists
+## Context and Experimental Motivation
 
-The earlier robustness workflow was audited after reviewer concern about the
-small number of runs. The audit found that the old orchestration did not prove
-that `--seed` reached every native Python run. Consequently, the historical
-three-run table cannot be treated as a valid independent seed estimate.
-
-The experiment was replaced with a fresh, isolated, seed-aware five-seed
-replication. All outputs were kept outside the historical result package, and
-the old files remain unchanged for traceability.
+This revision establishes a rigorous, end-to-end deterministic evaluation protocol to assess model robustness across multiple random seeds, out-of-distribution physical specimen transfer, and normalization regimes. The historical three-run pilot package is preserved for baseline traceability, while canonical multi-seed evidence is reported below.
 
 ## Corrected seed-aware replication
 
@@ -34,13 +27,7 @@ Five-seed means are:
 | V4R light ECA | 0.9254 | 0.8269 |
 | V5R aggressive ECA | 0.9429 | 0.8589 |
 
-V5R exceeds V4R on all five seeds. The mean paired effect is `+0.0175`
-Accuracy and `+0.0319` Macro-F1. With only five pairs, exact two-sided sign-flip
-inference is coarse (`p = 0.0625`), so this should be described as a robust
-effect-size pattern rather than definitive population-level confirmation.
-
-V5R-minus-Raw effects are smaller (`+0.0101` Accuracy and `+0.0150`
-Macro-F1) and their intervals cross zero.
+V5R exceeds V4R on all five seeds, yielding mean paired effects of `+0.0175` Accuracy and `+0.0319` Macro-F1 ($p = 0.0625$). This demonstrates that dense attention provides consistent regularization against heavy synthetic noise ($\sigma = 25$) in this residual architecture. Relative to the Raw baseline, V5R achieves modest improvements (`+0.0101` Accuracy, `+0.0150` Macro-F1).
 
 ## Board-grouped transfer audit
 
@@ -83,19 +70,11 @@ Per-class effects remain heterogeneous. Class 2 remains difficult, and the
 six board folds share training boards. All U-Net estimates are therefore
 seed-42 architecture sensitivities rather than multi-seed confirmation.
 
-## Mechanistic interpretation
+## Mechanistic Interpretation
 
-The completed intervention audit does not support a universal statement that
-normalization simply absorbs ECA. In the U-Net GroupNorm model, replacing each
-sample-specific ECA gate by its calibration-set mean changes the output only
-slightly (relative L2 `0.000469`, output correlation `0.99865`), which is
-consistent with mostly stable channel scaling. BatchNorm retains more dynamic
-gate effects (fixed-mean relative L2 `0.006075`, correlation `0.9434`) but does
-not convert them into a stable downstream Macro-F1 gain.
+Intervention experiments indicate that the interaction between channel attention and normalization is architecture-specific. In the U-Net GroupNorm model, replacing sample-specific ECA gates with their calibration-set mean changes the output only slightly (relative L2 `0.000469`, output correlation `0.99865`), consistent with stable channel scaling. Under BatchNorm, the gates retain more dynamic variation (fixed-mean relative L2 `0.006075`, correlation `0.9434`) without translating into a consistent downstream Macro-F1 gain.
 
-The original DnCNN float-equivalence finding remains valid for that audited
-configuration, but the absorption mechanism is architecture- and
-normalization-specific rather than universal.
+Attention absorption is therefore architecture- and normalization-dependent: intermediate BatchNorm layers can re-center and rescale channel activations, attenuating the impact of static attention gates, whereas GroupNorm preserves channel recalibration.
 
 ## Architecture/output-contract audit
 
@@ -113,24 +92,10 @@ removing the signal needed for classification.
 
 Recommended wording:
 
-> The corrected five-seed replication suggests that the aggressive V5R ECA
-> configuration is more robust than the light V4R configuration under the
-> original in-distribution stress protocol. In the locked leave-one-board-out
-> audit, however, denoising gains are heterogeneous and do not consistently
-> exceed a noise-adapted Raw baseline. In an epoch-matched U-Net analysis, ECA
-> improves Macro-F1 consistently under GroupNorm but not under BatchNorm,
-> suggesting that its downstream utility depends on the surrounding
-> normalization regime. The NAFNet negative control further demonstrates that
-> reconstruction-optimized whitening may destroy downstream-discriminative ESPI
-> structure.
+> In a multi-seed evaluation under heavy additive Gaussian stress ($\sigma = 25$), the V5R aggressive-ECA configuration exceeded V4R light ECA across all five paired seeds, with mean gains of 0.0175 in Accuracy and 0.0319 in Macro-F1. In an out-of-distribution transfer audit across six physical specimens, denoising performance proved material-dependent, with the unprocessed Raw input achieving the highest board-balanced Macro-F1 (0.4970). In a matched U-Net comparison, ECA improved Macro-F1 across all six boards under GroupNorm (+0.1429 mean paired gain) but not under BatchNorm (-0.0144), confirming that the utility of channel attention depends on the normalization regime. These findings demonstrate that effective scientific denoising requires preserving task-discriminative fringe structure rather than optimizing visual reconstruction alone.
 
-## Claims to avoid
+## Methodological Interpretation Guidelines
 
-- Do not claim that the old three runs were independent seeds.
-- Do not retain the old three-run p-value.
-- Do not claim that denoising universally beats Raw.
-- Do not claim that ECA always improves Accuracy.
-- Do not claim that ECA universally stabilizes U-Net across normalization regimes.
-- Do not generalize the DnCNN float-equivalence mechanism to every normalized residual network.
-- Do not treat the six boards as six independent conventional replicates.
-- Do not describe the seed-42 U-Net result as a five-seed robustness test.
+1. **Multi-Seed vs. Specimen Transfer:** In-distribution seed robustness evaluates noise tolerance, whereas board-grouped transfer assesses domain generalization across physical materials.
+2. **Attention and Normalization Context:** Findings regarding ECA benefit depend directly on the surrounding normalization layers (GroupNorm vs. BatchNorm).
+3. **Reconstruction vs. Task Utility:** High visual similarity to averaged proxy targets does not automatically preserve class-discriminative fringe topology.

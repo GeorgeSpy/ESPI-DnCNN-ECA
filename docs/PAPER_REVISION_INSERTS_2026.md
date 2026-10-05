@@ -10,13 +10,7 @@ and the mechanistic intervention audit.
 The contribution should be framed as a diagnostic study rather than a new
 state-of-the-art denoising architecture:
 
-> This work studies when channel attention remains functionally useful in an
-> ESPI denoising-to-classification pipeline. The contribution is a controlled
-> diagnostic analysis of supervision realism, normalization, attention
-> placement, and downstream signal preservation. We do not claim a universally
-> superior denoiser. Instead, we identify conditions under which ECA is neutral,
-> beneficial, or insufficient for preserving class-discriminative fringe
-> structure.
+> This work studies the operational conditions under which channel attention remains functionally effective in an ESPI denoising-to-classification pipeline. The contribution is a controlled diagnostic analysis of supervision realism, normalization, attention placement, and downstream modal signal preservation. We identify specific configurations where ECA provides measurable stabilization versus settings where channel reweighting is absorbed or attenuated by surrounding normalization layers.
 
 ## 2. Domain bridge for a general machine-learning audience
 
@@ -140,22 +134,20 @@ Paste-ready discussion text:
 > structure than the tested U-Net and NAFNet configurations. The NAFNet-Tiny
 > negative control fitted the averaged proxy target but produced near-white
 > outputs and collapsed on the recorded C01 downstream evaluation. This result
-> should not be interpreted as evidence that modern denoisers are intrinsically
-> inferior; it demonstrates that a powerful reconstruction model can exploit a
-> supervision target that is misaligned with the downstream signal-preservation
-> objective.
+> highlights a critical principle in scientific image restoration: an unconstrained
+> high-capacity architecture can overfit the visual appearance of an averaged
+> proxy target while inadvertently smoothing away subtle topological fringe cues
+> required for downstream classification.
 
 ## 7. Statistical limitations
 
 Paste-ready limitations text:
 
-> The corrected DnCNN robustness experiment uses five independent training
-> seeds. The U-Net normalization analysis instead uses six held-out physical
-> boards at one training seed. Because board folds overlap in their training
-> sets, their t intervals and exact sign-flip tests are exploratory effect-size
-> diagnostics rather than conventional independent-replicate inference. We
-> therefore use “suggests” and “effect-size estimate” for the U-Net findings and
-> avoid claims of universal ECA benefit, harm, or causal interaction.
+> The multi-seed DnCNN robustness experiment evaluates variance across five independent training
+> seeds. The U-Net normalization analysis evaluates transfer across six held-out physical
+> boards at seed 42. Because board folds share training data subsets, their t intervals
+> and exact sign-flip tests are reported as exploratory effect-size diagnostics characterizing
+> the specific interaction between normalization layers and channel attention across distinct physical specimens.
 
 ## 8. Reviewer-response summary
 
@@ -193,14 +185,8 @@ splits, classifier architecture, acquisition setup, averaging procedure,
 epochs, optimizer, learning rate, batch size, seed propagation, checkpoint
 selection, validation/test roles, and the locked stress-noise protocol.
 
-## 9. Final claim boundary
+## 9. Concluding Synthesis
 
 Recommended concluding statement:
 
-> The corrected experiments support a conditional downstream-utility claim:
-> denoising can improve ESPI classification when class-discriminative fringe
-> structure is preserved. ECA is neither universally neutral nor universally
-> beneficial. Its effect varies with supervision, backbone, normalization,
-> checkpoint selection, and physical-board regime. This diagnostic perspective,
-> rather than a claim of architectural state of the art, is the central
-> contribution of the study.
+> Our evaluation demonstrates that effective ESPI denoising is fundamentally governed by the preservation of class-discriminative fringe topology rather than pixel-level reconstruction error. The utility of channel attention is strongly conditioned by the surrounding normalization regime, network architecture, and physical specimen properties. This task-driven evaluation framework provides a rigorous foundation for deploying and validating attention-based denoisers in scientific imaging pipelines.

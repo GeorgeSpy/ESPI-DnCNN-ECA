@@ -1,4 +1,4 @@
-# publication Results Notes (Repository-to-publication Mapping)
+# Publication Results Notes (Repository-to-Publication Mapping)
 
 This note maps repository result files to publication tables and figures.
 
@@ -23,9 +23,9 @@ This note maps repository result files to publication tables and figures.
   - Used for the cost and latency summary table
   - Optional latency plot source
 
-## Interpretation note for publication alignment
+## Mapping and Evaluation Alignment
 
-The V4/V5 findings belong to the **mature 5-class downstream phase** of the publication and should not be interpreted as a direct numerical continuation of the earlier Chapter 4 ablation stage. They reflect the later curated evaluation package used for the final publication interpretation.
+The V4/V5 findings correspond to the **5-class downstream evaluation phase**, representing the primary benchmark evaluation package for the publication.
 
 ## Appendix Theta
 

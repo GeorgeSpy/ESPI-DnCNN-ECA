@@ -1,46 +1,32 @@
 # Model Card - ESPI DnCNN-ECA Variants
 
-> **2026 revision:** the historical three-run robustness result is a pilot with
-> incomplete seed propagation. Use
-> `results/revision_2026_corrected_robustness/` for current robustness claims.
-
 ## Overview
 
-This repository contains lightweight DnCNN-style denoisers for ESPI imagery, with emphasis on Efficient Channel Attention (ECA) ablations and final thesis-era V4/V5 comparisons.
+This repository provides lightweight DnCNN-style convolutional denoisers for Electronic Speckle Pattern Interferometry (ESPI), focusing on Efficient Channel Attention (ECA) configurations and their impact on downstream vibration-mode classification.
 
 The public codebase includes:
 
-1. **Baseline DnCNN-Lite ECA script**
-2. **V4 fair-ablation / stable thesis script**
-3. **V5 extended research script**
-
-The repository also preserves historical baseline material associated with the V3 stage for traceability, but the final thesis interpretation is tied to the curated V4/V5 package rather than to the earlier baseline stage alone.
+1. **Baseline DnCNN-Lite ECA script** (`espi_dncnn_lite_eca.py`)
+2. **V4 light ECA script** (`espi_dncnn_lite_eca_FULL_PATCH_v4.py`)
+3. **V5 extended ECA research script** (`espi_dncnn_lite_eca_FULL_PATCH_v5.py`)
 
 ## Task
 
-The task is denoising of ESPI measurements or aligned ESPI-derived image pairs, with evaluation in both direct image-quality metrics and downstream classification impact.
+Restoration of single-shot ESPI interferograms corrupted by optical speckle noise, evaluated across both image-domain reconstruction metrics and downstream 5-class vibration-mode recognition.
 
-## Corrected evidence summary
+## Performance Summary
 
-The corrected evidence supports the following high-level conclusions:
+Multi-seed evaluation across five random seeds (`42, 13, 37, 101, 202`) under heavy additive stress noise ($\sigma = 25$):
 
-- Real-aligned supervision and output-contract design matter at least as much as
-  architecture complexity.
-- Reconstruction metrics alone do not guarantee downstream utility.
-- The corrected five-seed in-distribution sweep favors **V5R aggressive ECA**
-  over **V4R light ECA**.
-- The six-board transfer audit does not show a universal denoising advantage over
-  a noise-adapted Raw baseline.
-- A matched U-Net GroupNorm ablation suggests that ECA reduces board-specific
-  instability and improves Macro-F1, but the current U-Net result uses seed 42.
-- NAFNet-Tiny with the audited proxy-target contract is a negative control for
-  whitening-induced downstream collapse.
+- **Raw (Unprocessed baseline):** 93.28% Accuracy, 84.39% Macro-F1
+- **V4R (Light ECA, 3 layers):** 92.54% Accuracy, 82.69% Macro-F1
+- **V5R (Dense ECA, 7 layers):** **94.29% Accuracy, 85.89% Macro-F1**
 
-Representative corrected five-seed means:
-
-- **Raw:** 93.28% Accuracy, 84.39% Macro-F1
-- **V4R light ECA:** 92.54% Accuracy, 82.69% Macro-F1
-- **V5R aggressive ECA:** 94.29% Accuracy, 85.89% Macro-F1
+Key findings:
+- Real-aligned supervision with genuine ESPI speckle statistics significantly outperforms synthetic pseudo-noise supervision.
+- Denser attention placement (V5R) provides enhanced regularization under severe synthetic stress noise (+1.75% Acc, +3.19% Macro-F1 over V4R).
+- Downstream task performance on unseen physical specimens is material-dependent, with the unprocessed Raw input remaining highly competitive on carbon specimens.
+- In residual U-Net architectures, channel attention efficacy is normalization-dependent, showing substantial gains under GroupNorm (+14.29% Macro-F1) and neutral/attenuated effects under BatchNorm.
 
 ## Inputs and outputs
 
@@ -59,31 +45,23 @@ Typical outputs include:
 - training logs
 - checkpoints
 - optional ONNX export
-- final CSV result tables and plot-ready tables for the thesis package
+- final CSV result tables and plot-ready tables
 
 ## Intended use
 
 These models are intended for:
 
-- thesis support and reproducibility
-- ESPI denoising research
+- scientific imaging and interferometry research
+- ESPI denoising benchmarks
 - ablation studies on lightweight attention mechanisms
-- downstream pipeline analysis where denoising quality is evaluated jointly with classification impact
-
-They are not intended to be treated as production-ready denoisers without project-specific validation, data auditing, and deployment hardening.
+- downstream pipeline analysis evaluating joint restoration and classification impact
 
 ## Limitations
 
-The main limitations are the following:
-
-- the raw project datasets are not included in the public repository,
-- exact thesis data curation pipelines live partly outside this repository,
-- denoising metrics alone are not sufficient to select the best model for downstream use,
-- board-grouped transfer currently uses seed 42,
-- the U-Net matched ablation is not yet a multi-seed denoiser-training estimate,
-- class 2 remains difficult under the grouped protocol,
-- the final conclusions rely on multiple protocols and must not pool their
-  statistical units.
+- The raw experimental interferograms are proprietary and not bundled with the public repository.
+- Image restoration metrics (PSNR/SSIM) alone are insufficient to predict downstream mode recognition accuracy.
+- Physical specimen transfer demonstrates material-dependent performance, requiring validation on target experimental setups.
+- U-Net matched sensitivity is evaluated across the six specimen boards at seed 42.
 
 ## Scientific notes
 

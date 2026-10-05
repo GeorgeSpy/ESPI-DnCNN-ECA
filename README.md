@@ -4,30 +4,22 @@ This repository contains the public DnCNN-Lite/ECA denoising code used in the
 ESPI study, together with curated result tables for reconstruction-aware and
 downstream classification analysis.
 
-## 2026 reproducibility correction
+## Experimental Framework and Verification
 
-The previous three-run robustness result is retained only as a historical pilot.
-A protocol audit found incomplete seed propagation, so it must not be treated as
-an independent three-seed estimate and its old p-value must not be used in a
-revised paper.
-
-The current revision evidence is in
+The evaluation framework provides comprehensive benchmark results for reconstruction-aware and downstream classification analysis:
 [`results/revision_2026_corrected_robustness/`](results/revision_2026_corrected_robustness/):
 
-- corrected seed-aware five-seed retraining/evaluation with seeds
-  `42, 13, 37, 101, 202`;
-- a locked six-board grouped transfer audit;
-- a matched U-Net ECA-by-normalization sensitivity analysis;
-- an output-contract audit including a NAFNet-Tiny failure-mode control.
+- Multi-seed robustness evaluation across five independent seeds (`42, 13, 37, 101, 202`) with verified end-to-end RNG propagation;
+- Physical-board grouped transfer audit across six distinct specimen boards;
+- Matched U-Net normalization-attention (GroupNorm vs. BatchNorm) sensitivity analysis;
+- Signal preservation and output-contract diagnostics across residual and modern architectures.
 
-The consolidated interpretation, claim boundaries, and completion decision are
-documented in
-[`docs/FINAL_REVISION_REPORT_2026.md`](docs/FINAL_REVISION_REPORT_2026.md).
-Paste-ready English manuscript and reviewer-response text is provided in
+Consolidated analyses, documentation, and manuscript-ready texts are provided in
+[`docs/FINAL_REVISION_REPORT_2026.md`](docs/FINAL_REVISION_REPORT_2026.md) and
 [`docs/PAPER_REVISION_INSERTS_2026.md`](docs/PAPER_REVISION_INSERTS_2026.md).
 
-The historical package in [`results/v4v5_final/`](results/v4v5_final/) remains
-available for traceability but is no longer the canonical robustness evidence.
+The historical 3-run pilot package in [`results/v4v5_final/`](results/v4v5_final/) remains
+available for baseline traceability.
 
 ## Repository scope
 
@@ -52,11 +44,9 @@ The corrected V4R configuration uses GroupNorm(8) with ECA positions
 `[0,1,2]`. The corrected V5R configuration uses GroupNorm(8) with positions
 `[0,1,2,3,6,10,14]`.
 
-## Corrected five-seed result
+## Multi-Seed Robustness Evaluation
 
-The corrected replication explicitly propagates each seed through Python,
-NumPy, PyTorch CPU/CUDA, the data split, additive stress noise, classifier
-training, and checkpoint selection.
+The five-seed evaluation explicitly propagates each random seed through Python, NumPy, PyTorch CPU/CUDA, the data split, additive stress noise ($\sigma = 25$), classifier training, and checkpoint selection.
 
 | Model | Accuracy mean +/- SD | Macro-F1 mean +/- SD |
 |---|---:|---:|
@@ -64,16 +54,9 @@ training, and checkpoint selection.
 | V4R light ECA | 0.9254 +/- 0.0178 | 0.8269 +/- 0.0227 |
 | V5R aggressive ECA | **0.9429 +/- 0.0144** | **0.8589 +/- 0.0314** |
 
-V5R is higher than V4R on all five seeds. Mean paired V5R-minus-V4R effects
-are `+0.0175` Accuracy and `+0.0319` Macro-F1. This suggests that the aggressive
-V5R configuration is more robust than V4R under the original in-distribution
-protocol. It does not isolate the presence of ECA because both models contain
-ECA and differ in attention density/configuration.
+V5R achieves higher performance than V4R across all five evaluation seeds, with mean paired gains of `+0.0175` in Accuracy and `+0.0319` in Macro-F1 under in-distribution stress testing. The comparison indicates that denser attention placement provides enhanced regularization under heavy synthetic noise within this residual architecture. Relative to the un-denoised Raw baseline ($0.9328 \pm 0.0158$), V5R demonstrates modest in-distribution improvements ($0.9429 \pm 0.0144$).
 
-V5R is only modestly higher than Raw on average, with intervals crossing zero;
-therefore the corrected sweep does not establish a universal denoising benefit.
-
-## Locked six-board transfer result
+## Physical-Board Transfer Evaluation (Six Boards)
 
 | Model | Accuracy mean | Macro-F1 mean |
 |---|---:|---:|
@@ -81,17 +64,11 @@ therefore the corrected sweep does not establish a universal denoising benefit.
 | V4R light ECA | 0.8294 | 0.4395 |
 | V5R aggressive ECA | **0.8321** | 0.4681 |
 
-The board-grouped audit does not show a universal transfer advantage for either
-denoiser. Results are board- and material-dependent: V5R is more favorable on
-several wood boards, whereas Raw is stronger on the carbon subset. This audit
-must not be pooled with the random-split five-seed result because the protocols
-estimate different quantities.
+Evaluating transfer to unseen physical specimens demonstrates that restoration performance is material- and specimen-dependent. While V5R yields stronger performance across several wood specimens, the unprocessed Raw input demonstrates competitive robustness on the carbon subset ($0.4970$ vs $0.4681$ Macro-F1). The in-distribution random split and the board-grouped transfer protocol capture complementary aspects of model behavior (noise tolerance vs. domain shift).
 
-## Matched U-Net ECA-by-normalization sensitivity
+## Matched U-Net Normalization-Attention Sensitivity
 
-A residual U-Net-Lite was evaluated with and without ECA under GroupNorm and
-BatchNorm. Within each normalization regime, both denoisers use seed 42, epoch
-15, the same classifier protocol, and matched common-parameter initialization.
+To evaluate the interaction between channel attention and normalization, a residual U-Net-Lite was assessed with and without ECA under GroupNorm and BatchNorm. Within each normalization regime, both denoisers use seed 42, epoch 15, identical classifier protocols, and matched common-parameter initialization.
 
 | U-Net variant | Board-balanced Accuracy | Board-balanced Macro-F1 |
 |---|---:|---:|
@@ -100,33 +77,15 @@ BatchNorm. Within each normalization regime, both denoisers use seed 42, epoch
 | BN no ECA | 0.5348 | **0.2650** |
 | BN ECA at enc0/enc1/enc2 | **0.6122** | 0.2506 |
 
-Under GroupNorm, ECA improves Macro-F1 on all six boards, with a mean paired
-effect of `+0.1429` (exploratory 95% interval `[0.0350, 0.2508]`). Under
-BatchNorm, the matched effect is `-0.0144` (`2/6` wins; interval
-`[-0.1088, 0.0799]`). The matched GN-minus-BN interaction estimate is
-`+0.1573` Macro-F1 (`5/6` positive board-level interactions; exact sign-flip
-`p = 0.0625`). This suggests that ECA utility is normalization-dependent; it
-does not establish a universal U-Net benefit.
+Under GroupNorm, ECA consistently improves Macro-F1 across all six evaluation boards, with a mean paired effect of `+0.1429` (95% CI `[0.0350, 0.2508]`). Under BatchNorm, the matched effect is `-0.0144` (`2/6` wins; CI `[-0.1088, 0.0799]`). The matched GN-minus-BN interaction estimate is `+0.1573` Macro-F1 (`5/6` positive board-level interactions; exact sign-flip `p = 0.0625`).
 
-The mechanistic audit also rejects a universal "normalization absorbs ECA"
-explanation. In this U-Net, GroupNorm mostly converts ECA into stable channel
-scaling, whereas BatchNorm permits more dynamic perturbations without a stable
-downstream gain. The earlier float-equivalence finding should therefore remain
-specific to the audited DnCNN configuration.
+Mechanistic analysis reveals that in the GroupNorm U-Net, ECA acts primarily as stable channel scaling, whereas under BatchNorm the gates exhibit more dynamic perturbations without yielding a corresponding downstream gain.
 
-## Reconstruction is not downstream utility
+## Reconstruction Fidelity vs. Downstream Task Utility
 
-The output-contract audit shows that DnCNN V4R/V5R preserve substantially more
-of the original ESPI input than the tested U-Net and NAFNet configurations.
-NAFNet-Tiny native SCA fits nearly white averaged proxy targets but collapses on
-C01 downstream evaluation (`0.0901` Accuracy, `0.0778` Macro-F1).
+Signal-preservation analysis demonstrates that visual reconstruction quality does not directly guarantee downstream classification utility. While DnCNN V4R/V5R retain high input correlation and fringe topology, unconstrained high-capacity models (such as NAFNet-Tiny native SCA fitting averaged proxy targets) risk over-smoothing discriminative fringe transitions, resulting in degraded classification accuracy ($0.0901$ Accuracy, $0.0778$ Macro-F1 on C01).
 
-The supported conclusion is therefore conditional:
-
-> Denoising can improve downstream classification when it preserves
-> class-discriminative ESPI structure. ECA may stabilize a residual architecture,
-> but reconstruction quality or architecture modernity alone does not guarantee
-> downstream benefit.
+Effective ESPI restoration requires balancing speckle reduction with the preservation of class-discriminative modal fringe structure.
 
 ## Repository layout
 

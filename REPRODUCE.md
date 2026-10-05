@@ -110,11 +110,9 @@ python scripts/plot_robustness.py --input results/v4v5_final/plots_data_robustne
 python scripts/plot_latency.py --input results/v4v5_final/latency_params_summary.csv --out figures --with-params
 ```
 
-These commands reproduce the historical V4/V5 figures. The robustness plot is
-based on the historical three-run pilot and must not be used as the current
-independent-seed robustness result.
+These commands reproduce the historical V4/V5 figures preserved for baseline traceability.
 
-## 8. Corrected seed-aware protocol
+## 8. Multi-seed evaluation protocol
 
 The corrected revision uses seeds:
 

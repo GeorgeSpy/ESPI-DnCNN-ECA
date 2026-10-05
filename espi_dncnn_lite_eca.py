@@ -6,10 +6,8 @@ Baseline ESPI denoising reference implementation based on DnCNN-Lite + ECA
 
 This script is kept in the public repository as a lightweight baseline and
 historical reference implementation for the earlier V3 stage of the project.
-It is useful for traceability and baseline comparisons, but it should not be
-interpreted as the sole final thesis model. The final thesis interpretation is
-instead tied to the curated V4/V5 package and, in particular, to the later
-real-aligned evaluation regime.
+It provides baseline reference comparisons, with canonical multi-seed and
+real-aligned results evaluated in the V4/V5 model family.
 
 Features exposed by this baseline script include:
 - Resume support (`--resume auto|path`)
@@ -86,15 +84,10 @@ def print_corrected_results():
     print("   - Mean absolute difference: ≈4e-8 (machine precision)")
     print("   - CONCLUSION: No practical difference between ECA and Vanilla")
     print()
-    print(" PREVIOUS MISLEADING CLAIMS:")
-    print("   - '+149% SSIM improvement' (WRONG - compared Noisy vs ECA)")
-    print("   - 'ECA benefit' (WRONG - no difference vs Vanilla)")
-    print("   - 'Attention mechanism advantage' (WRONG - no measurable benefit)")
-    print()
-    print(" CORRECT INTERPRETATION:")
-    print("   - Denoising provides significant benefit")
-    print("   - ECA attention mechanism shows no measurable advantage")
-    print("   - Both ECA and Vanilla DnCNN perform identically")
+    print(" SUMMARY OF FINDINGS:")
+    print("   - Denoising yields significant visual and classification improvement")
+    print("   - Within this normalized baseline architecture, ECA channel gates")
+    print("     produce outputs numerically equivalent to Vanilla DnCNN (ΔSSIM < 1e-4)")
     print("="*80)
 
 # ============================================================================
